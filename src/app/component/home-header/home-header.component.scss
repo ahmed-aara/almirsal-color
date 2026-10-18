@@ -53,7 +53,7 @@
         @include font(700);
         position: relative;
         display: block;
-        font-size: fl(23, 16);
+        font-size: fs(23, 16);
         line-height: 1.36;
         color: #fff !important;
         text-decoration: none !important;
@@ -82,7 +82,7 @@
     @include pill-button;
     height: fl(52, 40);
     padding-inline: fl(31, 20);
-    font-size: fl(23, 16);
+    font-size: fs(23, 16);
 }
 
 .menu-toggle {

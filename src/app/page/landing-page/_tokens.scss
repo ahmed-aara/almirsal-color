@@ -23,6 +23,14 @@ $bp-l: 1200px;
     @return clamp(#{$min}px, #{math.div($max, 19.2)}vw, #{$max}px);
 }
 
+// Font sizes: the Figma sizes scaled down to a medium reading size.
+// Change $font-scale to make all landing page text larger or smaller.
+$font-scale: .8;
+
+@function fs($max, $min) {
+    @return fl(math.max(math.round($max * $font-scale), $min), math.max(math.round($min * .9), 13));
+}
+
 // Side gutter: 119px at 1920px, 16px on phones.
 $gutter: fl(119, 16);
 

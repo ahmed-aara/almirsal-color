@@ -46,7 +46,7 @@ section {
     height: fl(60, 46);
     min-width: fl(240, 140);
     padding-inline: 24px;
-    font-size: fl(25, 16);
+    font-size: fs(25, 16);
 }
 
 .btn-outline {
@@ -55,7 +55,7 @@ section {
     min-width: fl(240, 140);
     padding-inline: 24px;
     border: 2px solid #fff;
-    font-size: fl(25, 16);
+    font-size: fs(25, 16);
 
     &:hover,
     &:focus-visible {
@@ -67,7 +67,7 @@ section {
     height: fl(38, 36);
     min-width: 0;
     padding-inline: fl(19, 16);
-    font-size: fl(20, 15);
+    font-size: fs(20, 15);
 }
 
 // Section padding used by most sections (99px in the design)
@@ -126,7 +126,7 @@ section {
 
     h1 {
         @include font(700);
-        font-size: fl(70, 34);
+        font-size: fs(70, 34);
         line-height: 1.2;
         color: #fff !important;
         text-align: right;
@@ -170,7 +170,7 @@ section {
 
     p {
         @include font(400);
-        font-size: fl(23, 16);
+        font-size: fs(23, 16);
         line-height: 1.36;
         color: $text-gray !important;
     }
@@ -185,7 +185,7 @@ section {
     min-width: 0;
     margin-top: fl(39, 28);
     padding-inline: fl(33, 24);
-    font-size: fl(23, 16);
+    font-size: fs(23, 16);
 }
 
 .about-image {
@@ -225,7 +225,7 @@ section {
     h3 {
         @include font(700);
         margin-top: fl(10, 8) !important;
-        font-size: fl(22, 16);
+        font-size: fs(22, 16);
         line-height: 1.36;
         color: $navy !important;
     }
@@ -233,7 +233,7 @@ section {
     .price {
         @include font(700);
         margin-top: 2px;
-        font-size: fl(20, 15);
+        font-size: fs(20, 15);
         line-height: 1.36;
         color: $orange;
     }
@@ -297,7 +297,7 @@ section {
 .why-subtitle {
     @include font(400);
     margin-top: 2px !important;
-    font-size: fl(20, 15);
+    font-size: fs(20, 15);
     line-height: 1.36;
     color: #fff !important;
 }
@@ -329,7 +329,7 @@ section {
     h3 {
         @include font(700);
         margin-top: fl(15, 12) !important;
-        font-size: fl(24, 18);
+        font-size: fs(24, 18);
         line-height: 1.36;
         color: #fff !important;
     }
@@ -338,7 +338,7 @@ section {
         @include font(400);
         max-width: 446px;
         margin-top: fl(18, 10) !important;
-        font-size: fl(22, 15);
+        font-size: fs(22, 15);
         line-height: 1.36;
         color: #d4d4d4 !important;
     }
@@ -375,14 +375,14 @@ section {
 .stat-value {
     @include font(800);
     font-variant-numeric: tabular-nums;
-    font-size: fl(70, 34);
+    font-size: fs(70, 34);
     line-height: 1.36;
     color: $orange;
 }
 
 .stat-label {
     @include font(700);
-    font-size: fl(26, 15);
+    font-size: fs(26, 15);
     line-height: 1.36;
     color: $text-dark;
 }
@@ -413,7 +413,7 @@ section {
     h3 {
         @include font(700);
         margin-top: fl(18, 14) !important;
-        font-size: fl(23, 17);
+        font-size: fs(23, 17);
         line-height: 1.36;
         color: $navy !important;
     }
@@ -422,7 +422,7 @@ section {
         @include font(400);
         max-width: 241px;
         margin-top: fl(19, 8) !important;
-        font-size: fl(18, 14);
+        font-size: fs(18, 14);
         line-height: 1.36;
         color: #787878 !important;
     }
@@ -567,7 +567,7 @@ section {
     h3 {
         @include font(700);
         margin-top: auto !important;
-        font-size: fl(20, 15);
+        font-size: fs(20, 15);
         line-height: 1.36;
         color: $navy-ink !important;
     }
@@ -596,7 +596,7 @@ section {
 
     h2 {
         @include font(800);
-        font-size: fl(40, 26);
+        font-size: fs(40, 26);
         line-height: 1.36;
         color: #fff !important;
     }
@@ -604,7 +604,7 @@ section {
     p {
         @include font(700);
         margin-top: fl(9, 6) !important;
-        font-size: fl(24, 16);
+        font-size: fs(24, 16);
         line-height: 1.36;
         color: #fff !important;
     }
@@ -616,7 +616,7 @@ section {
     height: fl(52, 46);
     margin-top: fl(17, 16);
     padding-inline: fl(43, 28);
-    font-size: fl(21.28, 16);
+    font-size: fs(21.28, 16);
 
     img {
         width: 19px;
@@ -658,7 +658,7 @@ section {
         @include font(400);
         max-width: 446px;
         margin-top: fl(28, 20) !important;
-        font-size: fl(22, 15);
+        font-size: fs(22, 15);
         line-height: 1.36;
         color: #868686 !important;
     }
@@ -666,7 +666,7 @@ section {
     h3 {
         @include font(700);
         margin-top: fl(21, 16) !important;
-        font-size: fl(26, 18);
+        font-size: fs(26, 18);
         line-height: 1.36;
         color: $navy-ink !important;
     }
@@ -799,7 +799,7 @@ section {
     h3 {
         @include font(700);
         margin-top: 11px !important;
-        font-size: fl(18, 16);
+        font-size: fs(18, 16);
         line-height: 1.12;
         color: $text-dark !important;
     }
@@ -856,7 +856,7 @@ section {
 
     h2 {
         @include font(700);
-        font-size: fl(30, 22);
+        font-size: fs(30, 22);
         line-height: 1.12;
         color: $navy !important;
     }
@@ -864,7 +864,7 @@ section {
     p {
         @include font(400);
         margin-top: fl(15, 8) !important;
-        font-size: fl(25, 16);
+        font-size: fs(25, 16);
         line-height: 1.12;
         color: $text-muted !important;
     }
@@ -884,7 +884,7 @@ section {
 
     label {
         @include font(400);
-        font-size: fl(19, 15);
+        font-size: fs(19, 15);
         line-height: 1.12;
         color: $text-dark;
     }
@@ -1005,7 +1005,7 @@ section {
         width: 100%;
         padding: 0;
         background: transparent;
-        font-size: fl(26, 17);
+        font-size: fs(26, 17);
         line-height: 1.12;
         color: $text-dark;
         text-align: right;
@@ -1031,7 +1031,7 @@ section {
     p {
         @include font(400);
         margin-top: fl(21, 12) !important;
-        font-size: fl(22, 15);
+        font-size: fs(22, 15);
         line-height: 1.82;
         color: #838383 !important;
     }
@@ -1047,7 +1047,7 @@ section {
 
     p {
         @include font(400);
-        font-size: fl(20, 14);
+        font-size: fs(20, 14);
         line-height: 1.12;
         color: $text-dark !important;
     }

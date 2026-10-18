@@ -21,14 +21,14 @@
 
 .eyebrow {
     @include font(700);
-    font-size: fl(22, 15);
+    font-size: fs(22, 15);
     line-height: 1.36;
     color: $orange;
 }
 
 .title {
     @include font(700);
-    font-size: fl(40, 24);
+    font-size: fs(40, 24);
     line-height: 1.36;
     color: $navy !important;
 }
