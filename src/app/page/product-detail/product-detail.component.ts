@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, QueryList, ViewChildren, isDevMode } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ServiceService } from 'src/app/services/service.service';
 import { Review } from 'src/app/component/product-reviews/product-reviews.component';
+import { sampleReviewsFor } from 'src/app/component/product-reviews/sample-reviews';
 import { TipStep, tipsFor } from './product-tips';
 
 @Component({
@@ -27,6 +28,8 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   productArr: any = []
   specificationArr: string[] = []
   reviewArr: Review[] = []
+  // True when showing made-up preview reviews (local development only)
+  sampleReviews = false
   tipSteps: TipStep[] = []
 
   sectionArr = [
@@ -93,7 +96,9 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     if (!this.productData) return
 
     this.selectedImage = this.productData.img
-    this.reviewArr = this.productData.reviews || []
+    const reviews: Review[] = this.productData.reviews || []
+    this.sampleReviews = isDevMode() && !reviews.length
+    this.reviewArr = this.sampleReviews ? sampleReviewsFor(this.productData.id) : reviews
     this.tipSteps = tipsFor(this.productData.category)
     this.specificationArr = (this.productData.specification || '')
       .split('\n')

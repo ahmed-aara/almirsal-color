@@ -20,6 +20,8 @@ export class ProductReviewsComponent implements OnChanges {
   @Input() productId = ''
   @Input() productName = ''
   @Input() reviews: Review[] = []
+  // Preview data shown only in local development
+  @Input() sample = false
 
   stars = [1, 2, 3, 4, 5]
   ratingLabels = ['', 'سيء', 'مقبول', 'جيد', 'جيد جداً', 'ممتاز']

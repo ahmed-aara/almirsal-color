@@ -25,10 +25,28 @@ img {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
     grid-template-areas:
+        "banner banner"
         "summary form"
         "list form";
     align-items: start;
     gap: fl(28, 20) fl(40, 24);
+}
+
+.sample-banner {
+    @include font(400);
+    grid-area: banner;
+    padding: 14px 18px;
+    border: 1px dashed #e0b400;
+    border-radius: 12px;
+    background: #fff8e1;
+    font-size: fs(17, 14);
+    line-height: 1.6;
+    color: #6b5500 !important;
+
+    strong {
+        @include font(700);
+        margin-inline-end: 6px;
+    }
 }
 
 .summary {
@@ -461,6 +479,7 @@ img {
     .reviews {
         grid-template-columns: minmax(0, 1fr);
         grid-template-areas:
+            "banner"
             "summary"
             "list"
             "form";

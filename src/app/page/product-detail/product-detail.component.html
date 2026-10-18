@@ -40,6 +40,7 @@
                                 [class.off]="s > averageRating">
                         </span>
                         <span>{{reviewArr.length ? averageRating + ' من 5 · ' + reviewArr.length + ' تقييم' : 'كن أول من يقيّم هذا المنتج'}}</span>
+                        <span *ngIf="sampleReviews" class="sample-tag">تجريبي</span>
                     </a>
 
                     <p *ngIf="productData.summary" class="summary">{{productData.summary}}</p>
@@ -161,7 +162,7 @@
 
                 <app-product-reviews class="section-body" uk-scrollspy="cls: uk-animation-fade; delay: 150"
                     [productId]="productData.id" [productName]="productData.name"
-                    [reviews]="reviewArr"></app-product-reviews>
+                    [reviews]="reviewArr" [sample]="sampleReviews"></app-product-reviews>
             </div>
         </section>
 
