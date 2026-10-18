@@ -39,7 +39,7 @@
                 <div class="review-head">
                     <span class="avatar" aria-hidden="true">{{review.name.charAt(0)}}</span>
                     <div>
-                        <h4>{{review.name}}</h4>
+                        <h4>{{review.name}} <span *ngIf="review.sample" class="sample-tag">تجريبي</span></h4>
                         <span *ngIf="review.date" class="date">{{review.date}}</span>
                     </div>
                     <div class="review-stars" role="img" [attr.aria-label]="'التقييم ' + review.rating + ' من 5'">

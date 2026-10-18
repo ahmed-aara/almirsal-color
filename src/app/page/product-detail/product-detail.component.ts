@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ServiceService } from 'src/app/services/service.service';
 import { Review } from 'src/app/component/product-reviews/product-reviews.component';
-import { sampleReviewsFor } from 'src/app/component/product-reviews/sample-reviews';
 import { TipStep, tipsFor } from './product-tips';
 
 @Component({
@@ -28,7 +27,7 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   productArr: any = []
   specificationArr: string[] = []
   reviewArr: Review[] = []
-  // True when showing made-up preview reviews (local development only)
+  // True when the shown reviews include preview samples (local development only)
   sampleReviews = false
   tipSteps: TipStep[] = []
 
@@ -96,9 +95,10 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     if (!this.productData) return
 
     this.selectedImage = this.productData.img
+    // Reviews flagged "sample" in product.json are previews: shown in local development only
     const reviews: Review[] = this.productData.reviews || []
-    this.sampleReviews = isDevMode() && !reviews.length
-    this.reviewArr = this.sampleReviews ? sampleReviewsFor(this.productData.id) : reviews
+    this.reviewArr = isDevMode() ? reviews : reviews.filter(review => !review.sample)
+    this.sampleReviews = this.reviewArr.some(review => review.sample)
     this.tipSteps = tipsFor(this.productData.category)
     this.specificationArr = (this.productData.specification || '')
       .split('\n')

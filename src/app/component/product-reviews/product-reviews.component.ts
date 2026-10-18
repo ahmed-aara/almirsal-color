@@ -6,9 +6,12 @@ export interface Review {
   rating: number
   comment: string
   date?: string
+  // Preview-only review, never shown in production builds
+  sample?: boolean
 }
 
-// Reviews come from the product's "reviews" array in assets/json/product.json.
+// Reviews come from the product's "reviews" array in assets/json/product.json
+// (entries with "sample": true are previews shown only in local development).
 // New reviews are sent to the company on WhatsApp so they can be checked and published.
 @Component({
   selector: 'app-product-reviews',
