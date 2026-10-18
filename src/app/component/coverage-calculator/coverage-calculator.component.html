@@ -1,0 +1,39 @@
+<div class="calculator" dir="rtl">
+    <div class="calc-head">
+        <span class="badge">أداة مجانية</span>
+        <h3>احسب الكمية التي تحتاجها</h3>
+        <p>أدخل مساحة السطح وسنقدّر لك عدد العبوات بناءً على معدل فرد المنتج.</p>
+    </div>
+
+    <div class="calc-form">
+        <label class="field">
+            <span>المساحة (م²)</span>
+            <input type="number" min="0" step="1" inputmode="decimal" [(ngModel)]="area">
+        </label>
+
+        <div *ngIf="coverage.options.length > 1" class="field">
+            <span id="calc-option-label">نوع التشطيب</span>
+            <div class="options" role="radiogroup" aria-labelledby="calc-option-label">
+                <button *ngFor="let item of coverage.options; let i = index" type="button" role="radio"
+                    [attr.aria-checked]="optionIndex === i" [class.active]="optionIndex === i"
+                    (click)="optionIndex = i">{{item.label}}</button>
+            </div>
+        </div>
+
+        <label class="waste">
+            <input type="checkbox" [(ngModel)]="addWaste">
+            <span>إضافة 10٪ احتياطي للهالك</span>
+        </label>
+    </div>
+
+    <div class="result" aria-live="polite">
+        <span class="result-label">تحتاج تقريباً</span>
+        <strong><span dir="ltr">{{packs}}</span> {{coverage.pack}}</strong>
+        <span *ngIf="coverage.packsPerUnit > 1" class="result-sub">≈ {{units}} {{coverage.unit}}
+            · معدل الفرد {{option.area}} م² لكل {{coverage.unit}}</span>
+        <span *ngIf="coverage.packsPerUnit === 1" class="result-sub">معدل التغطية {{option.area}} م² لكل
+            {{coverage.unit}}</span>
+    </div>
+
+    <p class="note">القيم تقديرية وتعتمد على حالة السطح وطريقة التطبيق. تواصل معنا لتأكيد الكمية قبل الطلب.</p>
+</div>

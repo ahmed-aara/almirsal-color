@@ -19,6 +19,8 @@ import { SectionHeadingComponent } from './component/section-heading/section-hea
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { SiteFooterComponent } from './component/site-footer/site-footer.component';
 import { StatsComponent } from './component/stats/stats.component';
+import { CoverageCalculatorComponent } from './component/coverage-calculator/coverage-calculator.component';
+import { ProductReviewsComponent } from './component/product-reviews/product-reviews.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { StatsComponent } from './component/stats/stats.component';
     SectionHeadingComponent,
     ProductCardComponent,
     SiteFooterComponent,
-    StatsComponent
+    StatsComponent,
+    CoverageCalculatorComponent,
+    ProductReviewsComponent
   ],
   imports: [
     BrowserModule,
