@@ -202,6 +202,26 @@ section {
     @include product-grid;
 }
 
+.products-more {
+    display: flex;
+    justify-content: center;
+    margin-top: fl(48, 32);
+}
+
+.btn-outline-dark {
+    @include pill-button(transparent, $navy);
+    height: fl(56, 46);
+    padding-inline: fl(36, 24);
+    border: 2px solid $navy;
+    font-size: fs(23, 16);
+
+    &:hover,
+    &:focus-visible {
+        background: $navy;
+        color: #fff !important;
+    }
+}
+
 /*
 * Why us
 ********/

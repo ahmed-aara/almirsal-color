@@ -3,7 +3,7 @@
     <nav class="breadcrumb" aria-label="مسار التنقل">
         <ol>
             <li><a routerLink="/">الرئيسية</a></li>
-            <li><a routerLink="/" fragment="products">المنتجات</a></li>
+            <li><a routerLink="/products">المنتجات</a></li>
             <li *ngIf="productData" aria-current="page">{{productData.name}}</li>
         </ol>
     </nav>
@@ -211,7 +211,7 @@
     <section *ngIf="loaded_ && notFound" class="not-found">
         <h1>لم نجد هذا المنتج</h1>
         <p>ربما تم تغيير الرابط أو لم يعد المنتج متاحاً. تصفح منتجاتنا لتجد ما تحتاجه.</p>
-        <a class="btn-fill" routerLink="/" fragment="products">تصفح منتجاتنا</a>
+        <a class="btn-fill" routerLink="/products">تصفح منتجاتنا</a>
     </section>
 
     <!-- Related products -->

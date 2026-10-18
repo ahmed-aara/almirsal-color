@@ -21,6 +21,7 @@ import { SiteFooterComponent } from './component/site-footer/site-footer.compone
 import { StatsComponent } from './component/stats/stats.component';
 import { CoverageCalculatorComponent } from './component/coverage-calculator/coverage-calculator.component';
 import { ProductReviewsComponent } from './component/product-reviews/product-reviews.component';
+import { ProductsComponent } from './page/products/products.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProductReviewsComponent } from './component/product-reviews/product-rev
     SiteFooterComponent,
     StatsComponent,
     CoverageCalculatorComponent,
-    ProductReviewsComponent
+    ProductReviewsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

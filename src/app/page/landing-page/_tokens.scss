@@ -70,7 +70,7 @@ $gutter: fl(119, 16);
     }
 }
 
-// 4-up product grid (2-up on tablets, 1-up on small phones)
+// 4-up product grid (2-up on tablets and phones, 1-up on very narrow phones)
 @mixin product-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -89,7 +89,7 @@ $gutter: fl(119, 16);
         gap: 24px 12px;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 359px) {
         grid-template-columns: minmax(0, 300px);
         justify-content: center;
     }

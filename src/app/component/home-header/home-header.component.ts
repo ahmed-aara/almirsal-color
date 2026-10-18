@@ -23,7 +23,7 @@ export class HomeHeaderComponent {
   links: NavLink[] = [
     { name: 'الرئيسية', route: '/', activeOn: path => path === '/' },
     { name: 'عن الشركة', route: '/about', activeOn: path => path === '/about' },
-    { name: 'المنتجات', fragment: 'products', activeOn: path => path.startsWith('/product/') },
+    { name: 'المنتجات', route: '/products', activeOn: path => path === '/products' || path.startsWith('/product/') },
     { name: 'مشروعات', fragment: 'projects', activeOn: () => false },
   ]
 
