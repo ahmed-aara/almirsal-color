@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   newTheme: boolean | null = null;
 
   // Routes (first path segment) that use the new landing page design
-  private newThemeRoutes = ['', 'product'];
+  private newThemeRoutes = ['', 'product', 'about'];
 
   //Data
   messageData = {

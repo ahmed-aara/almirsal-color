@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ServiceService } from 'src/app/services/service.service';
 
@@ -11,7 +11,7 @@ const IMG = 'assets/img/new-landing-page/';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LandingPageComponent implements OnInit, OnDestroy {
 
   img = IMG
 
@@ -25,19 +25,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     { icon: IMG + 'delivery-svgrepo-com 2.svg', title: 'التوفير', description: 'أسعار تنافسية تمنحك قيمة أفضل مقابل ما تدفعه، وتساعدك على التحكم في تكلفة مشروعك.' },
     { icon: IMG + 'icons/truck.svg', title: 'سرعة التوصيل', description: 'نلتزم بسرعة التوريد لتصلك منتجاتك في الوقت المناسب وتستمر أعمالك بدون تعطيل.' },
   ]
-
-  statArr = [
-    { value: 500, comma: false, label: 'عميل سعيد' },
-    { value: 10000, comma: true, label: 'موقع عمل' },
-    { value: 1000, comma: false, label: 'شركة مقاولات' },
-    { value: 28, comma: false, label: 'محافظة وصلنا إليها' },
-    { value: 23, comma: false, label: 'سنة من الخبرة' },
-  ]
-
-  // Count up only when the browser can tell us the stats are visible and motion is allowed
-  private countUpEnabled = 'IntersectionObserver' in window
-    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  statDisplay = this.statArr.map(item => this.formatStat(item, this.countUpEnabled ? 0 : item.value))
 
   sectorArr = [
     { icon: IMG + 'user-svgrepo-com 4.svg', title: 'المطورون العقاريون', description: 'حلول ومنتجات تساعدك على تنفيذ مشروعاتك بكفاءة وعلى نطاق واسع.' },
@@ -116,10 +103,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private wideQuery = window.matchMedia('(min-width: 960px)')
   private onWideChange = () => this.zone.run(() => this.setWide(this.wideQuery.matches))
   private touchStartX: number | null = null
-  private statsObserver?: IntersectionObserver
-  private countUpFrame = 0
-
-  @ViewChild('statsGrid') statsGrid?: ElementRef<HTMLElement>
 
   constructor(private service: ServiceService, private sanitizer: DomSanitizer, private zone: NgZone) {
     const query = encodeURIComponent('مصنع المرسال كلر للدهانات والبويات الحديثة، سبين، الغربية');
@@ -132,22 +115,8 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.wideQuery.addEventListener('change', this.onWideChange)
   }
 
-  ngAfterViewInit(): void {
-    if (!this.countUpEnabled || !this.statsGrid) return;
-
-    this.statsObserver = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        this.statsObserver?.disconnect();
-        this.countUp();
-      }
-    }, { threshold: 0.4 });
-    this.statsObserver.observe(this.statsGrid.nativeElement);
-  }
-
   ngOnDestroy(): void {
     this.wideQuery.removeEventListener('change', this.onWideChange)
-    this.statsObserver?.disconnect()
-    cancelAnimationFrame(this.countUpFrame)
   }
 
   getProduct() {
@@ -172,26 +141,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
     UIkit.lightboxPanel({
       items: this.catalogPages.map(source => ({ source, type: 'image' }))
     }).show();
-  }
-
-  /*
-  * Stats count-up
-  ********/
-  countUp(duration = 1800) {
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      this.statDisplay = this.statArr.map(item => this.formatStat(item, Math.round(item.value * eased)));
-      if (progress < 1) this.countUpFrame = requestAnimationFrame(tick);
-    };
-
-    this.countUpFrame = requestAnimationFrame(tick);
-  }
-
-  formatStat(item: { comma: boolean }, value: number) {
-    return '+' + (item.comma ? value.toLocaleString('en-US') : value);
   }
 
   toggleFaq(index: number) {

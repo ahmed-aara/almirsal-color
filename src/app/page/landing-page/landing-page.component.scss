@@ -31,15 +31,6 @@ section {
     position: relative;
 }
 
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-}
-
 // Shared buttons
 .btn-fill {
     @include pill-button;
@@ -293,42 +284,6 @@ section {
 ********/
 .stats {
     @extend %section-block;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    max-width: 1600px;
-    margin: fl(68, 36) auto 0 !important;
-}
-
-.stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: fl(17, 8);
-    min-height: fl(226, 0);
-    padding: fl(40, 20) 8px;
-    text-align: center;
-
-    &+.stat {
-        border-right: 1px solid #cfcfcf;
-    }
-}
-
-.stat-value {
-    @include font(800);
-    font-variant-numeric: tabular-nums;
-    font-size: fs(70, 34);
-    line-height: 1.36;
-    color: $orange;
-}
-
-.stat-label {
-    @include font(700);
-    font-size: fs(26, 15);
-    line-height: 1.36;
-    color: $text-dark;
 }
 
 /*
@@ -1033,26 +988,6 @@ section {
         }
     }
 
-    .stats-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        row-gap: 24px;
-        max-width: 640px;
-    }
-
-    // 3 + 2 layout
-    .stat {
-        grid-column: span 2;
-        min-height: 0;
-
-        &+.stat {
-            border-right: 0;
-        }
-
-        &:nth-child(4) {
-            grid-column: 2 / span 2;
-        }
-    }
-
     .sector-grid {
         grid-template-columns: repeat(2, minmax(0, 300px));
     }
@@ -1073,22 +1008,6 @@ section {
 }
 
 @media (max-width: $bp-s - 1) {
-    .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .stat {
-        grid-column: auto;
-
-        &:nth-child(4) {
-            grid-column: auto;
-        }
-
-        &:last-child {
-            grid-column: 1 / -1;
-        }
-    }
-
     .sector-grid {
         grid-template-columns: minmax(0, 300px);
     }

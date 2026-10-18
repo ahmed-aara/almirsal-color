@@ -78,13 +78,7 @@
         <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="أرقام تتحدث عنا" title="سنوات من العمل... وآلاف من قصص النجاح"
             headingId="stats-title"></app-section-heading>
 
-        <ul class="stats-grid" #statsGrid uk-scrollspy="cls: uk-animation-fade; target: > li; delay: 100">
-            <li *ngFor="let item of statArr; let i = index" class="stat">
-                <span class="stat-value" dir="ltr" aria-hidden="true">{{statDisplay[i]}}</span>
-                <span class="sr-only">{{formatStat(item, item.value)}}</span>
-                <span class="stat-label">{{item.label}}</span>
-            </li>
-        </ul>
+        <app-stats></app-stats>
     </section>
 
     <!-- Sectors -->

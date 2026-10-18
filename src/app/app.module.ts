@@ -18,6 +18,7 @@ import { HomeHeaderComponent } from './component/home-header/home-header.compone
 import { SectionHeadingComponent } from './component/section-heading/section-heading.component';
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { SiteFooterComponent } from './component/site-footer/site-footer.component';
+import { StatsComponent } from './component/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SiteFooterComponent } from './component/site-footer/site-footer.compone
     HomeHeaderComponent,
     SectionHeadingComponent,
     ProductCardComponent,
-    SiteFooterComponent
+    SiteFooterComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
