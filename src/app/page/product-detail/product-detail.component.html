@@ -1,0 +1,114 @@
+<section class="sec_detail py-4">
+
+    <div *ngIf="loaded_" class="uk-container">
+
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+
+            <div class="uk-width-2-3@l">
+
+                <div class="product_box">
+
+                    <div *ngIf="productData.images.length !== 1" class="side_img">
+
+                        <div class="img_column">
+
+                            <div *ngFor="let item of productData.images" class="item_"
+                                uk-scrollspy="cls: uk-animation-fade; target: .other-image; delay: 200; repeat: false">
+
+                                <div class="other-image"
+                                    [style]="productData.img === item? '--border-color: #EBA771' : '--border-color: white'">
+                                    <img class="full_w full_h cursor" (click)="selectImage(item)"
+                                        [src]="'assets/img/products/' + item" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product_img" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">
+                        <img class="full_w full_h" [src]="'assets/img/products/' + productData.img" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="uk-width-expand@l">
+
+                <div class="text-right">
+
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" class="f_Bold">{{
+                        productData.name }}</h3>
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 350; repeat: false" class="f_Bold nescafeC_">{{
+                        productData.price | number : '1.2-2' }} جنيه</h3>
+
+                    <div uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false"
+                        class="uk-flex uk-flex-middle uk-flex-right">
+                        <p [class]="productData.available ? 'greenC_' : 'redC_'" class="f_Bold px-1">متوفر في المتجر</p>
+                        <img width="20px"
+                            [src]="'assets/img/vector/' + (productData.available ? 'check' : 'close') + '.svg'" alt="">
+                    </div>
+
+                    <div class="my-1">
+
+                        <a uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false" [href]="contactLink"
+                            target="_blank" style="--bg: #45270F;" class="mr-1 a_decoration">
+                            <div class="uk-flex uk-flex-middle uk-flex-center">
+                                <img src="assets/img/vector/phone_white.svg" alt="">
+                                <p class="whiteC_ f_Bold a_decoration">اتصل</p>
+                            </div>
+                        </a>
+
+                        <a uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false" [href]="askProductLink"
+                            target="_blank" style="--bg: #27AE60;" class="a_decoration">
+                            <div class="uk-flex uk-flex-middle uk-flex-center">
+                                <img src="assets/img/vector/bag_white.svg" alt="">
+                                <p class="whiteC_ f_Bold a_decoration">احصل على المنتج</p>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 550; repeat: false" class="f_Bold mb-1">تفاصيل
+                        المنتج</h3>
+                    <p uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false"
+                        class="white_space nescafeC_ specification_"> {{ productData.specification }} </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h3 class="f_Bold text-center mt-4" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">ربما يعجبك
+            هذا ايضاً</h3>
+
+        <div class="product_">
+
+            <div class="uk-grid-medium uk-child-width-1-4@l mt-3" uk-grid
+                uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 200; repeat: false">
+
+                <div *ngFor="let item of productArr">
+
+                    <div class="card_ text-center">
+                        <div class="bg whiteBG_">
+                            <img [src]="'assets/img/products/' + item.img" alt="">
+                        </div>
+
+                        <h5 class="mt-1">{{item.name}}</h5>
+                        <h5 hidden class="nescafeC_ f_Bold">{{item.price | number : '1.2-2'}} جنيه</h5>
+                        <a (click)="detail(item.id)" class="a_decoration" [routerLink]="'/product/' + item.id">اعرف
+                            التفاصيل</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

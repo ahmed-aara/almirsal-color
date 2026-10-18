@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LandingPageComponent } from './page/landing-page/landing-page.component';
+import { AboutComponent } from './page/about/about.component';
+import { ProductDetailComponent } from './page/product-detail/product-detail.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: LandingPageComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'product/:id', component: ProductDetailComponent },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

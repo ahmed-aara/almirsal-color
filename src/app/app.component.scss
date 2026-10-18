@@ -1,0 +1,104 @@
+.modal_ {
+    background-color: #FFF9F4;
+    direction: rtl;
+}
+
+.modal_ .close_btn {
+    left: 10px !important;
+    right: unset !important;
+}
+
+.modal_ h6 {
+    margin-bottom: 0.3rem !important;
+}
+
+.modal_ .uk-input {
+    background-color: transparent !important;
+    color: #383838 !important;
+    border: 1px solid #EBD2BF !important;
+}
+
+.modal_ .uk-input {
+    color: #8b725e !important;
+    border: 1px solid transparent;
+    text-align: right;
+}
+
+.modal_ .uk-input {
+    height: 40px;
+}
+
+.modal_ .uk-input::placeholder {
+    color: #8b725e !important;
+}
+
+.modal_ .uk-input:focus {
+    border: 1px solid #45270f !important;
+}
+
+.modal_ .btn_ {
+    background-color: #45270f;
+    color: #FFF9F4;
+    padding: 0.6rem 1rem;
+    font-size: 0.7rem;
+}
+
+
+/*responsive*********************************************/
+
+/*
+[Table of Contents]
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px ipad pro
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px microsoft Lomia 550
+11. 539px
+12. 479px
+13. 400px
+*/
+
+@media only screen and (max-width: 1920px) {}
+
+@media only screen and (max-width: 1600px) {}
+
+@media only screen and (max-width: 1440px) {}
+
+@media only screen and (max-width: 1380px) {}
+
+@media only screen and (max-width: 1280px) {}
+
+@media only screen and (max-width: 1199px) {}
+
+@media only screen and (max-width: 1100px) {}
+
+@media only screen and (max-width: 1024px) {}
+
+@media only screen and (max-width: 991px) {}
+
+@media only screen and (max-width: 959px) {}
+
+@media only screen and (max-width: 880px) {}
+
+@media only screen and (max-width: 768px) {}
+
+@media only screen and (max-width: 767px) {
+    .img_box {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 575px) {}
+
+@media only screen and (max-width: 539px) {}
+
+@media only screen and (max-width: 480px) {}
+
+@media only screen and (max-width: 479px) {}
+
+@media only screen and (max-width: 400px) {}

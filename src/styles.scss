@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "Almarai-Light";
+    src: url(assets/font/Almarai/Almarai-Light.ttf);
+}
+
+@font-face {
+    font-family: "Almarai-Regular";
+    src: url(assets/font/Almarai/Almarai-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Almarai-Bold";
+    src: url(assets/font/Almarai/Almarai-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Almarai-ExtraBold";
+    src: url(assets/font/Almarai/Almarai-ExtraBold.ttf);
+}
+
+body {
+    font-family: "Almarai-Regular";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a 
+{
+    font-family: "Almarai-Regular";
+    margin: 0 !important;
+    color: #45270F !important;
+    direction: rtl;
+}
+
+html {
+    background-color: #FFF9F4;
+}
+
+::selection {
+    background-color: #C78047;
+}

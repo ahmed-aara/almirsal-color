@@ -1,0 +1,104 @@
+<footer>
+
+    <div class="uk-container py-4">
+
+        <div class="uk-grid-small uk-child-width-1-2@l" uk-grid>
+
+            <div class="text-right">
+
+                <div class="social_ mt-3">
+                    <h3 class="lightbrownC_ text-right"
+                        uk-scrollspy="cls: uk-animation-fade; delay: 800; repeat: false">ابقى على تواصل</h3>
+                    <p class="whiteC_ text-right" uk-scrollspy="cls: uk-animation-fade; delay: 900; repeat: false">
+                        تابعنا الآن واحصل على آخر التحديثات لدينا</p>
+
+                    <div class="uk-grid-small uk-child-width-auto mt-1 uk-flex-right" uk-grid
+                        uk-scrollspy="cls: uk-animation-fade; target: .social_; delay: 300; repeat: false">
+
+                        <div *ngFor="let item of social_links">
+                            <a class="social_" target="_blank" [href]="item"><img width="100%" [src]="(item | include: 'facebook') ? 'assets/img/vector/facebook.svg': '' ||
+                                (item | include: 'instagram') ? 'assets/img/vector/instagram.svg': '' ||
+                                (item | include: 'linkedin') ? 'assets/img/vector/linkedin.svg': '' ||
+                                (item | include: 'twitter') ? 'assets/img/vector/twitter.svg': '' ||
+                                (item | include: 'wa.me') ? 'assets/img/vector/whatsapp.svg': ''  " alt=""></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-3" uk-scrollspy="cls: uk-animation-fade; delay: 550; repeat: false">
+
+                    <div class="uk-grid-small uk-flex uk-flex-middle cursor" (click)="sendReport()" uk-grid>
+
+                        <div class="uk-width-expand">
+                            <h4 class="whiteC_ f_Bold">الإبلاغ عن إساءة</h4>
+                        </div>
+
+                        <div class="uk-width-auto">
+                            <div style="width: 25px;">
+                                <img width="100%" [src]="'assets/img/vector/phone.svg'" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false" alt="">
+                    <h4 class="f_Bold lightbrownC_ mt-1" style="direction: rtl;">
+                        {{ '© ' + year + ' المرسال كلر لكيماويات البناء الحديث' }}
+                    </h4>
+                </div>
+
+            </div>
+
+            <div class="text-right">
+
+                <img width="25%" src="assets/img/logo.png"
+                    uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" alt="">
+
+                <div class="uk-flex uk-flex-right">
+                    <h4 class="whiteC_ mt-3 f_Light uk-width-2-3 "
+                        uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">تعتبر شركة المرسال كلر هي
+                        الشهيرة في مجال التكنولوجيا وتطوير الدهانات والبويات الحديثة و تشطيب المباني ذات الأساس
+                        الاكريليك والأسمنتي في جمهورية مصر العربية</h4>
+
+                </div>
+
+
+                <div class="uk-flex uk-flex-right">
+                    <div uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false" class="line_ my-3"></div>
+                </div>
+
+
+                <div class="uk-grid-small uk-child-width-1-1@l" uk-grid
+                    uk-scrollspy="cls: uk-animation-fade; target: .uk-grid-small; delay: 300; repeat: false">
+
+                    <div *ngFor="let item of contactArr" class="">
+
+                        <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+
+                            <div class="uk-width-expand">
+                                <p class="whiteC_">{{item.value}}</p>
+                            </div>
+
+                            <div class="uk-width-auto">
+                                <div style="width: 25px;">
+                                    <img width="100%" [src]="'assets/img/vector/' + item.type +'.svg'" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>

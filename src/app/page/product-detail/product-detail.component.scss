@@ -1,0 +1,183 @@
+.sec_detail a {
+    padding: 8px 15px;
+    background-color: var(--bg);
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.sec_detail a img {
+    width: 20px;
+    margin-left: 5px;
+}
+
+.sec_detail .specification_ {
+    font-size: 1.1rem;
+}
+
+.sec_detail .product_box {
+    display: flex;
+}
+
+.sec_detail .product_box .side_img .img_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.sec_detail .side_img {
+    width: 105px;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.sec_detail .product_box .side_img .img_column .item_ {
+    margin-bottom: 0.5rem !important;
+}
+
+.sec_detail .other-image {
+    position: relative;
+    width: 100px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 2px solid var(--border-color);
+}
+
+.sec_detail .other-image img {
+    position: absolute;
+    object-fit: cover;
+}
+
+.sec_detail .product_img {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 0.5rem;
+}
+
+.sec_detail .product_img img {
+    position: absolute;
+    object-fit: fill;
+}
+
+.product_ .card_ a {
+    background-color: #ebd3c0;
+    color: #8b725e;
+    font-size: 1rem;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 0;
+    transition: 0.5s;
+}
+
+.product_ .card_ a:hover {
+    background-color: #45270f;
+    color: white !important;
+}
+
+/*responsive*********************************************/
+
+/*
+[Table of Contents]
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px ipad pro
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px microsoft Lomia 550
+11. 539px
+12. 479px
+13. 400px
+*/
+
+@media only screen and (max-width: 1920px) {
+}
+
+@media only screen and (max-width: 1600px) {
+}
+
+@media only screen and (max-width: 1440px) {
+}
+
+@media only screen and (max-width: 1380px) {
+}
+
+@media only screen and (max-width: 1280px) {
+}
+
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 1100px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 880px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 767px) {
+    //
+    .sec_detail .product_box {
+        flex-direction: column;
+    }
+
+    .sec_detail .product_box .side_img .img_column {
+        flex-direction: row;
+    }
+
+    .sec_detail .product_box .side_img {
+        width: 100%;
+        height: unset;
+        overflow-x: scroll;
+        margin-top: 0.5rem;
+        order: 2;
+    }
+
+    .sec_detail .product_box .side_img .img_column .item_ {
+        margin-right: 0.5rem !important;
+    }
+
+    .sec_detail .product_box .product_img {
+        width: 100%;
+        height: 400px;
+        margin-left: unset;
+        order: 1;
+    }
+
+    .sec_detail .product_box .product_img img {
+        object-fit: cover;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 539px) {
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 479px) {
+}
+
+@media only screen and (max-width: 400px) {
+}

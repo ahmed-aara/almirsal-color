@@ -1,0 +1,164 @@
+.nav_website {
+    display: block;
+}
+
+.nav_mobile {
+    display: none;
+}
+
+.nav_mobile nav {
+    height: 85px;
+}
+
+.nav_mobile.one {
+    background-color: #ebd3c0;
+}
+
+.nav_mobile nav .logo_ {
+    position: relative;
+    width: 130px;
+}
+
+.nav_mobile nav .uk-navbar-nav {
+    gap: 0 !important;
+}
+
+.nav_mobile nav .uk-navbar-nav a {
+    font-size: 17px;
+    min-height: unset !important;
+    height: 100%;
+}
+
+.nav_mobile .uk-navbar-container:not(.uk-navbar-transparent) {
+    background: transparent;
+}
+
+.one {
+    background-color: #fff9f4;
+}
+
+.two {
+    background-color: #8b725e;
+}
+
+.uk-navbar-item,
+.uk-navbar-nav > li > a,
+.uk-navbar-toggle {
+    color: #eba771 !important;
+    font-size: 1.2rem;
+}
+
+.uk-navbar-nav {
+    gap: 55px;
+}
+
+.uk-offcanvas-bar {
+    background: #8b725e;
+}
+
+
+#offcanvas-menu .body_ .line_ {
+    height: 2px;
+    background-color: #c78047;
+}
+
+#offcanvas-menu .links_ a {
+    position: relative;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#offcanvas-menu .links_ a::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 3px;
+    background-color: #c78047;
+    margin-left: 10px;
+    transition: 0.5s;
+}
+
+#offcanvas-menu .links_ a:hover::before {
+    width: 10px;
+    margin-right: 30px;
+}
+
+
+/*responsive*********************************************/
+
+/*
+[Table of Contents]
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px ipad pro
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px microsoft Lomia 550
+11. 539px
+12. 479px
+13. 400px
+*/
+
+@media only screen and (max-width: 1920px) {
+}
+
+@media only screen and (max-width: 1600px) {
+}
+
+@media only screen and (max-width: 1440px) {
+}
+
+@media only screen and (max-width: 1380px) {
+}
+
+@media only screen and (max-width: 1280px) {
+}
+
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 1100px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 880px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 767px) {
+    .nav_website {
+        display: none;
+    }
+    .nav_mobile {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 539px) {
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 479px) {
+}
+
+@media only screen and (max-width: 400px) {
+}

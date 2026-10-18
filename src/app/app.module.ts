@@ -1,18 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LandingPageComponent } from './page/landing-page/landing-page.component';
+import { AboutComponent } from './page/about/about.component';
+import { ProductDetailComponent } from './page/product-detail/product-detail.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { IncludePipe } from './pipe/include.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingPageComponent,
+    AboutComponent,
+    ProductDetailComponent,
+    FooterComponent,
+    NavBarComponent,
+    IncludePipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgSelectModule, FormsModule
   ],
-  providers: [],
+  providers: [
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

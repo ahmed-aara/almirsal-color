@@ -1,0 +1,473 @@
+.sec_header .circle {
+    width: 550px;
+    height: 550px;
+    background-color: #ebd3c0;
+    border-radius: 1000px;
+}
+
+.sec_header .box_ {
+    position: relative;
+}
+
+.sec_header .shakara {
+    top: 15%;
+    position: absolute;
+    width: 38%;
+    transform: rotate(-3deg);
+    filter: drop-shadow(0px 5px 7px rgba($color: #45270f, $alpha: 0.5));
+}
+
+.sec_header .year_ {
+    position: absolute;
+    top: 0;
+    left: 7%;
+    width: 10%;
+}
+
+.sec_header button {
+    border: 1px solid #45270f;
+    color: #45270f;
+    background-color: transparent;
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.sec_header button:hover {
+    background-color: #45270f;
+    color: white !important;
+}
+
+.sec_header .img_box {
+    order: 1;
+}
+
+.sec_header .content_box {
+    order: 2;
+}
+
+.sec_good {
+    position: relative;
+}
+
+.sec_good .line {
+    position: absolute;
+    background-color: rgba($color: #efd0b8, $alpha: 1);
+    z-index: 1;
+    height: 30px;
+    width: 100%;
+}
+
+.sec_good .uk-container {
+    position: relative;
+    z-index: 2;
+}
+
+.sec_good .card_ {
+    background-color: #8b725e;
+    height: 150px;
+}
+
+.sec_good h3,
+.sec_good h4 {
+    color: #ebd3c0 !important;
+    direction: rtl;
+}
+
+.sec_desc .box_ {
+    position: relative;
+}
+
+.sec_desc .box_ .bg_ {
+    position: relative;
+    height: 75vh;
+    overflow: hidden;
+    box-shadow: 0px 4px 18px 0px rgba($color: #c78047, $alpha: 0.4);
+}
+
+.sec_desc .box_ .bg_ .black_screen {
+    position: absolute;
+    background-color: rgba($color: #5c412c, $alpha: 0.5);
+    z-index: 2;
+}
+
+.sec_desc .box_ .bg_ img {
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.sec_desc .box_ .bg_ .border_ {
+    position: absolute;
+    width: 95%;
+    border: 7px solid #ebd3c0 !important;
+    height: 90%;
+    z-index: 3;
+}
+
+.sec_desc .box_ .body_ {
+    position: absolute;
+    bottom: -10%;
+    right: 0.5%;
+    width: 55%;
+    direction: rtl;
+    background-color: #ebd2bf;
+    box-shadow: 0px 4px 18px 0px rgba($color: #c78047, $alpha: 0.4);
+    z-index: 4;
+}
+
+.sec_pref .wallpaper_box {
+    position: relative;
+    z-index: 2;
+    top: 0;
+}
+
+.sec_pref .wallpaper_box .bg_ {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.sec_pref .wallpaper_box .bg_ img {
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.sec_pref .wallpaper_box .bg_ .border_ {
+    position: absolute;
+    width: 83%;
+    border: 7px solid #ebd3c0 !important;
+    height: 90%;
+    z-index: 2;
+}
+
+.sec_pref .pref_item {
+    display: flex;
+    align-items: center;
+}
+
+.sec_info {
+    position: relative;
+    height: 70vh;
+}
+
+.sec_info .img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.sec_info .img img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+
+.sec_info .img .black_screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: #45270f, $alpha: 0.8);
+    width: 100%;
+    height: 100%;
+}
+
+.sec_info .caption .img {
+    width: 33%;
+}
+
+.sec_info .caption .img img {
+    width: 100%;
+}
+
+.sec_info .caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sec_info button {
+    border: 1px solid #ebd3c0;
+    background-color: #ebd3c0;
+    color: #8b725e;
+    font-size: 1.2rem;
+    padding: 7px 20px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.sec_info button:hover {
+    background-color: transparent;
+    color: #ebd3c0 !important;
+}
+
+.sec_product .card_ a {
+    background-color: #ebd3c0;
+    color: #8b725e;
+    font-size: 1rem;
+    padding: 5px 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.sec_product .card_ a:hover {
+    background-color: #45270f;
+    color: white !important;
+}
+
+.sec_number .bg_ {
+    margin: auto;
+    width: 90%;
+    overflow: hidden;
+    position: relative;
+}
+
+.sec_number .bg_ img {
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.sec_number .bg_ .black_screen {
+    position: absolute;
+    background-color: rgba($color: #45270F, $alpha: 0.7);
+    z-index: 2;
+}
+
+.sec_number .content_ {
+    position: relative;
+    z-index: 3;
+}
+
+.sec_story img {
+    filter: drop-shadow(0px 5px 7px rgba($color: #c5712c, $alpha: 0.3));
+}
+
+.sec_story .img_box {
+    order: 1;
+}
+
+.sec_story .content_box {
+    order: 2;
+}
+
+.sec_contact h3 {
+    font-size: 2.5rem;
+}
+
+.sec_contact p {
+    color: #aeaeae !important;
+}
+
+.sec_contact .uk-input,
+.sec_contact .uk-textarea {
+    background-color: #ebd2bf !important;
+    color: #8b725e !important;
+    border: 1px solid transparent;
+    text-align: right;
+}
+
+.sec_contact .uk-input {
+    height: 55px;
+}
+
+.sec_contact .uk-input::placeholder,
+.sec_contact .uk-textarea::placeholder {
+    color: #8b725e !important;
+}
+
+.sec_contact .uk-input:focus,
+.sec_contact .uk-textarea:focus {
+    border: 1px solid #45270f;
+}
+
+.sec_contact button {
+    padding: 15px 25px;
+    color: #eba771 !important;
+    font-size: 1.2rem;
+    background-color: rgba($color: #8b725e, $alpha: 0.9);
+    transition: 0.5s;
+}
+
+.sec_contact button:hover {
+    background-color: rgba($color: #8b725e, $alpha: 1);
+}
+
+/*responsive*********************************************/
+
+/*
+[Table of Contents]
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px ipad pro
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px microsoft Lomia 550
+11. 539px
+12. 479px
+13. 400px
+*/
+
+@media only screen and (max-width: 1920px) {
+}
+
+@media only screen and (max-width: 1600px) {
+}
+
+@media only screen and (max-width: 1440px) {
+}
+
+@media only screen and (max-width: 1380px) {
+}
+
+@media only screen and (max-width: 1280px) {
+}
+
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 1100px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 880px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 767px) {
+    .sec_header {
+        overflow: hidden;
+        background-color: #ebd3c0;
+        padding: 40px 0px 0px !important;
+    }
+
+    .sec_header .img_box {
+        margin-top: 140px;
+        order: 2;
+    }
+
+    .sec_header .content_box {
+        order: 1;
+    }
+
+    .sec_header .year_ {
+        display: none;
+    }
+
+    .sec_header .circle {
+        background-color: #fff9f4;
+        width: 700px;
+        height: 350px;
+        border-top-left-radius: 1000px;
+        border-top-right-radius: 1000px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .sec_header .shakara {
+        top: -20%;
+        width: 64%;
+        transform: rotate(-3deg);
+    }
+
+    .sec_good .card_ {
+        background-color: #8b725e;
+        height: unset;
+    }
+
+    .sec_desc .box_ .bg_ {
+        height: 75vh;
+    }
+    .sec_desc .box_ .bg_ .border_ {
+        width: 90%;
+        height: 93%;
+    }
+
+    .sec_desc .box_ .body_ {
+        margin-top: 15px;
+        background-color: transparent;
+        top: 0;
+        bottom: unset;
+        right: unset;
+        width: 100%;
+        box-shadow: unset;
+    }
+
+    .sec_desc .box_ .body_ h3 {
+        color: #ebd3c0 !important;
+    }
+
+    .sec_pref .wallpaper_box {
+        display: none;
+    }
+
+    .sec_pref .pref_item {
+        display: unset;
+        align-items: unset;
+    }
+    .sec_info {
+        position: relative;
+        height: 90vh;
+    }
+    .sec_info h2,
+    .sec_info h3 {
+        text-align: center !important;
+    }
+    .sec_info .box_a_ {
+        text-align: center;
+    }
+    .sec_story .img_box {
+        order: 2;
+    }
+    .sec_story .content_box {
+        order: 1;
+    }
+    .sec_contact .vertical_line_ {
+        display: none;
+    }
+    .sec_contact .subtitle_box {
+        margin-top: 10px !important;
+        order: 2;
+    }
+    .sec_contact .title_box {
+        margin-top: 0px !important;
+        order: 1;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 539px) {
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 479px) {
+}
+
+@media only screen and (max-width: 400px) {
+}
