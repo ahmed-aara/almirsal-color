@@ -1,0 +1,145 @@
+@use '../../page/landing-page/tokens' as *;
+
+:host *,
+:host *::before,
+:host *::after {
+    box-sizing: border-box;
+}
+
+.home-header {
+    position: relative;
+    z-index: 10;
+    background: $navy-dark;
+    box-shadow: 0 4px 4px #193761;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1920px;
+    height: fl(128, 72);
+    margin: 0 auto;
+    padding-inline: $gutter;
+}
+
+.logo {
+    display: block;
+    flex-shrink: 0;
+    width: fl(170, 120);
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: fl(35, 20);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: fl(34, 20);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+        @include font(700);
+        position: relative;
+        display: block;
+        font-size: fl(23, 16);
+        line-height: 1.36;
+        color: #fff !important;
+        text-decoration: none !important;
+        transition: color .2s ease;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset-inline: 0;
+            bottom: fl(-11, -8);
+            height: 2px;
+            background: $orange;
+            transform: scaleX(0);
+            transition: transform .2s ease;
+        }
+
+        &.active::after,
+        &:hover::after,
+        &:focus-visible::after {
+            transform: scaleX(1);
+        }
+    }
+}
+
+.cta {
+    @include pill-button;
+    height: fl(52, 40);
+    padding-inline: fl(31, 20);
+    font-size: fl(23, 16);
+}
+
+.menu-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 7px;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: $bp-m - 1) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+// Mobile menu
+.home-offcanvas .uk-offcanvas-bar {
+    background: $navy-dark;
+    padding-top: 64px;
+}
+
+.menu-links {
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+
+    li+li {
+        border-top: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    a {
+        @include font(700);
+        display: block;
+        padding: 14px 0;
+        font-size: 18px;
+        color: #fff !important;
+        text-decoration: none !important;
+
+        &.active {
+            color: $orange !important;
+        }
+    }
+}
+
+.home-offcanvas .cta {
+    width: 100%;
+    height: 48px;
+    font-size: 18px;
+}

@@ -14,6 +14,8 @@ import { ProductDetailComponent } from './page/product-detail/product-detail.com
 import { FooterComponent } from './component/footer/footer.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { IncludePipe } from './pipe/include.pipe';
+import { HomeHeaderComponent } from './component/home-header/home-header.component';
+import { SectionHeadingComponent } from './component/section-heading/section-heading.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { IncludePipe } from './pipe/include.pipe';
     ProductDetailComponent,
     FooterComponent,
     NavBarComponent,
-    IncludePipe
+    IncludePipe,
+    HomeHeaderComponent,
+    SectionHeadingComponent
   ],
   imports: [
     BrowserModule,

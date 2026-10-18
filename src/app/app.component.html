@@ -1,6 +1,7 @@
-<app-nav-bar [navbar_type]="navbar_type"></app-nav-bar>
+<!-- The home page (navbar_type 'one') renders its own header and footer -->
+<app-nav-bar *ngIf="navbar_type === 'two'" [navbar_type]="navbar_type"></app-nav-bar>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="navbar_type === 'two'"></app-footer>
 
 <!-- This is the modal with the default close button -->
 <div id="modal-close-default" uk-modal>
