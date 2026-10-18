@@ -16,6 +16,8 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { IncludePipe } from './pipe/include.pipe';
 import { HomeHeaderComponent } from './component/home-header/home-header.component';
 import { SectionHeadingComponent } from './component/section-heading/section-heading.component';
+import { ProductCardComponent } from './component/product-card/product-card.component';
+import { SiteFooterComponent } from './component/site-footer/site-footer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { SectionHeadingComponent } from './component/section-heading/section-hea
     NavBarComponent,
     IncludePipe,
     HomeHeaderComponent,
-    SectionHeadingComponent
+    SectionHeadingComponent,
+    ProductCardComponent,
+    SiteFooterComponent
   ],
   imports: [
     BrowserModule,

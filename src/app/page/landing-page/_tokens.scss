@@ -69,3 +69,28 @@ $gutter: fl(119, 16);
         outline-offset: 3px;
     }
 }
+
+// 4-up product grid (2-up on tablets, 1-up on small phones)
+@mixin product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: fl(24, 16);
+    max-width: 1352px;
+    margin: fl(62, 32) auto 0 !important;
+    padding: 0;
+    list-style: none;
+
+    @media (max-width: $bp-m - 1) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 664px;
+    }
+
+    @media (max-width: $bp-s - 1) {
+        gap: 24px 12px;
+    }
+
+    @media (max-width: 400px) {
+        grid-template-columns: minmax(0, 300px);
+        justify-content: center;
+    }
+}

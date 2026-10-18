@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare const UIkit: any
 
@@ -6,7 +7,8 @@ interface NavLink {
   name: string
   route?: string
   fragment?: string
-  active?: boolean
+  // Paths (without query/fragment) on which the link shows as active
+  activeOn: (path: string) => boolean
 }
 
 @Component({
@@ -19,16 +21,33 @@ export class HomeHeaderComponent {
   menuId = 'home-offcanvas-menu'
 
   links: NavLink[] = [
-    { name: 'الرئيسية', route: '/', active: true },
-    { name: 'عن الشركة', route: '/about' },
-    { name: 'المنتجات', fragment: 'products' },
-    { name: 'مشروعات', fragment: 'projects' },
+    { name: 'الرئيسية', route: '/', activeOn: path => path === '/' },
+    { name: 'عن الشركة', route: '/about', activeOn: path => path === '/about' },
+    { name: 'المنتجات', fragment: 'products', activeOn: path => path.startsWith('/product/') },
+    { name: 'مشروعات', fragment: 'projects', activeOn: () => false },
   ]
 
-  scrollTo(event: Event, fragment: string) {
+  constructor(private router: Router) { }
+
+  get currentPath(): string {
+    return this.router.url.split(/[?#]/)[0];
+  }
+
+  isActive(link: NavLink): boolean {
+    return link.activeOn(this.currentPath);
+  }
+
+  // Home page sections: scroll smoothly when already on the home page, otherwise navigate there
+  goToSection(event: Event, fragment: string) {
     event.preventDefault();
-    UIkit.offcanvas(`#${this.menuId}`)?.hide();
-    document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth' });
+    this.closeMenu();
+
+    const target = document.getElementById(fragment);
+    if (this.currentPath === '/' && target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      this.router.navigate(['/'], { fragment });
+    }
   }
 
   closeMenu() {

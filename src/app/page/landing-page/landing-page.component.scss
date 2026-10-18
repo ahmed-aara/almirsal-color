@@ -208,63 +208,7 @@ section {
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: fl(24, 16);
-    max-width: 1352px;
-    margin: fl(62, 32) auto 0 !important;
-}
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: fl(19, 0);
-    text-align: center;
-
-    h3 {
-        @include font(700);
-        margin-top: fl(10, 8) !important;
-        font-size: fs(22, 16);
-        line-height: 1.36;
-        color: $navy !important;
-    }
-
-    .price {
-        @include font(700);
-        margin-top: 2px;
-        font-size: fs(20, 15);
-        line-height: 1.36;
-        color: $orange;
-    }
-
-    .btn-fill {
-        margin-top: fl(21, 14) !important;
-    }
-}
-
-.product-image {
-    width: 100%;
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: #fff;
-    transition: transform .3s ease, box-shadow .3s ease;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform .4s ease;
-    }
-}
-
-.product-card:hover .product-image {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 28px rgba(16, 39, 71, .12);
-
-    img {
-        transform: scale(1.04);
-    }
+    @include product-grid;
 }
 
 /*
@@ -1038,22 +982,6 @@ section {
 }
 
 /*
-* Footer
-********/
-.landing-footer {
-    padding: fl(52, 28) $gutter;
-    background: $bg-page;
-    text-align: center;
-
-    p {
-        @include font(400);
-        font-size: fs(20, 14);
-        line-height: 1.12;
-        color: $text-dark !important;
-    }
-}
-
-/*
 * Responsive
 ********/
 @media (max-width: $bp-l - 1) {
@@ -1089,11 +1017,6 @@ section {
         width: 100%;
         max-width: 542px;
         margin: 0 auto;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        max-width: 664px;
     }
 
     .why-grid {
@@ -1150,10 +1073,6 @@ section {
 }
 
 @media (max-width: $bp-s - 1) {
-    .product-grid {
-        gap: 24px 12px;
-    }
-
     .stats-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1181,12 +1100,5 @@ section {
 
     .field-row {
         grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 400px) {
-    .product-grid {
-        grid-template-columns: minmax(0, 300px);
-        justify-content: center;
     }
 }

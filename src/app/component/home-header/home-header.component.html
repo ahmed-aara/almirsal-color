@@ -8,13 +8,13 @@
         <nav class="desktop-nav" aria-label="القائمة الرئيسية">
             <ul class="links">
                 <li *ngFor="let link of links">
-                    <a *ngIf="link.route" [routerLink]="link.route" [class.active]="link.active"
-                        [attr.aria-current]="link.active ? 'page' : null">{{link.name}}</a>
-                    <a *ngIf="link.fragment" [href]="'#' + link.fragment"
-                        (click)="scrollTo($event, link.fragment)">{{link.name}}</a>
+                    <a *ngIf="link.route" [routerLink]="link.route" [class.active]="isActive(link)"
+                        [attr.aria-current]="isActive(link) ? 'page' : null">{{link.name}}</a>
+                    <a *ngIf="link.fragment" [href]="'/#' + link.fragment" [class.active]="isActive(link)"
+                        (click)="goToSection($event, link.fragment)">{{link.name}}</a>
                 </li>
             </ul>
-            <a class="cta" href="#contact" (click)="scrollTo($event, 'contact')">تواصل معنا</a>
+            <a class="cta" href="/#contact" (click)="goToSection($event, 'contact')">تواصل معنا</a>
         </nav>
 
         <button class="menu-toggle" type="button" uk-toggle="target: #home-offcanvas-menu"
@@ -32,13 +32,13 @@
         <nav aria-label="القائمة الرئيسية">
             <ul class="menu-links">
                 <li *ngFor="let link of links">
-                    <a *ngIf="link.route" [routerLink]="link.route" [class.active]="link.active"
+                    <a *ngIf="link.route" [routerLink]="link.route" [class.active]="isActive(link)"
                         (click)="closeMenu()">{{link.name}}</a>
-                    <a *ngIf="link.fragment" [href]="'#' + link.fragment"
-                        (click)="scrollTo($event, link.fragment)">{{link.name}}</a>
+                    <a *ngIf="link.fragment" [href]="'/#' + link.fragment" [class.active]="isActive(link)"
+                        (click)="goToSection($event, link.fragment)">{{link.name}}</a>
                 </li>
             </ul>
-            <a class="cta" href="#contact" (click)="scrollTo($event, 'contact')">تواصل معنا</a>
+            <a class="cta" href="/#contact" (click)="goToSection($event, 'contact')">تواصل معنا</a>
         </nav>
     </div>
 </div>

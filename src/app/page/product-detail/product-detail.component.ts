@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
@@ -7,81 +9,75 @@ import { ServiceService } from 'src/app/services/service.service';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
 
   //variable
   product_id: any
-  askProductLink: any
-  contactLink: any
+  askProductLink = ''
+  callLink = `tel:+2${this.service.phoneNumber}`
+  selectedImage = ''
+  loaded_ = false
+  notFound = false
 
   //Array
   productArr: any = []
+  specificationArr: string[] = []
 
   //Data
-  productData: any = {
-    name: null,
-    price: null,
-    img: null,
-    images: null,
-    available: null,
-    specification: null
-  }
+  productData: any = null
 
-  loaded_:any = false
+  private routeSub?: Subscription
 
   constructor(private service: ServiceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const params = this.activatedRoute.snapshot.params;
-    this.product_id = params['id']
-    this.detail(params['id'])
-    this.getProduct()
-    let message = `أريد التواصل معك`
-    this.contactLink = `https://api.whatsapp.com/send/?phone=+2${this.service.phoneNumber}&text=${message}&type=phone_number&app_absent=0&type_of_request=ContactUs`
-  }
-
-  detail(id: any) {
-    this.service.getProductById(id).subscribe(
-      response => {
-        this.productData = {
-          name: response.name,
-          price: response.price,
-          img: response.img,
-          images: response.images,
-          available: response.available,
-          specification: response.specification,
-        }
-        let message = `أريد معرفة التفاصيل أكثر عن *(${response.name})*%0a${window.location.href}`
-        this.askProductLink = `https://api.whatsapp.com/send/?phone=+2${this.service.phoneNumber}&text=${message}&type=phone_number&app_absent=0&type_of_request=ProductDetail`
+    // The component is reused when moving between products, so follow the id instead of reading it once
+    this.routeSub = this.activatedRoute.paramMap.pipe(
+      switchMap(params => {
+        this.product_id = params.get('id')
+        this.loaded_ = false
+        return this.service.getProduct()
+      })
+    ).subscribe(
+      response => this.detail(response),
+      err => {
+        console.log(err)
+        this.notFound = true
         this.loaded_ = true
-      },
-      err => {
-        console.log(err)
       }
     )
   }
 
-  selectImage(item: any) {
-    this.productData.img = item
+  ngOnDestroy(): void {
+    this.routeSub?.unsubscribe()
   }
 
-  getProduct() {
-    this.service.getProduct().subscribe(
-      response => {
-        this.productArr = response
+  detail(products: any[]) {
+    this.productData = products.find(item => item.id === this.product_id) || null
+    this.notFound = !this.productData
+    this.loaded_ = true
+    this.productArr = this.shuffle(products.filter(item => item.id !== this.product_id)).slice(0, 4)
 
-        const shuffle = (array: string[]) => {
-          return array.map((a) => ({ sort: Math.random(), value: a }))
-            .sort((a, b) => a.sort - b.sort)
-            .map((a) => a.value);
-        };
+    if (!this.productData) return
 
-        this.productArr = shuffle(response).slice(0, 4);
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    this.selectedImage = this.productData.img
+    this.specificationArr = (this.productData.specification || '')
+      .split('\n')
+      .map((line: string) => line.replace(/^\s*[-–•]\s*/, '').trim())
+      .filter(Boolean)
+
+    let message = `أريد معرفة التفاصيل أكثر عن *(${this.productData.name})*\n${window.location.origin}/product/${this.productData.id}`
+    this.askProductLink = `https://api.whatsapp.com/send/?phone=+2${this.service.phoneNumber}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0&type_of_request=ProductDetail`
+  }
+
+  selectImage(item: string) {
+    this.selectedImage = item
+  }
+
+  private shuffle(array: any[]) {
+    return array.map((a) => ({ sort: Math.random(), value: a }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value);
   }
 
 }

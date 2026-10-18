@@ -1,5 +1,3 @@
-<app-home-header></app-home-header>
-
 <main class="landing" dir="rtl" lang="ar">
 
     <!-- Hero -->
@@ -48,14 +46,8 @@
             headingId="products-title"></app-section-heading>
 
         <ul class="product-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
-            <li *ngFor="let item of productArr" class="product-card">
-                <div class="product-image">
-                    <img [src]="'assets/img/products/' + item.img" [alt]="item.name" loading="lazy">
-                </div>
-                <h3>{{item.name}}</h3>
-                <span class="price">{{item.price | number : '1.2-2'}} جنيه</span>
-                <a class="btn-fill btn-small" [routerLink]="'/product/' + item.id"
-                    [attr.aria-label]="'أعرف التفاصيل عن ' + item.name">أعرف التفاصيل</a>
+            <li *ngFor="let item of productArr">
+                <app-product-card [product]="item"></app-product-card>
             </li>
         </ul>
     </section>
@@ -290,7 +282,3 @@
     </section>
 
 </main>
-
-<footer class="landing-footer" dir="rtl">
-    <p>© {{year}} المرسال كلر - جميع الحقوق محفوظة</p>
-</footer>

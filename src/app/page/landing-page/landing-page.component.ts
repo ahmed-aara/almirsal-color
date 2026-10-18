@@ -101,7 +101,6 @@ export class LandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   isWide = false
   projectPos = 0
   testimonialPos = 1
-  year = new Date().getFullYear()
   mapUrl: SafeResourceUrl
   error_msg = ''
 
