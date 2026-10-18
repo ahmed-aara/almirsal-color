@@ -7,7 +7,7 @@
         <img class="hero-bg" [src]="img + 'pexels-wiki15-canton-598594475-28681439 1.png'" alt="" fetchpriority="high">
         <div class="hero-overlay"></div>
 
-        <div class="hero-content">
+        <div class="hero-content" uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: > *; delay: 250">
             <h1 id="hero-title">المرسال كلر<br>اختيار يبني مستقبل</h1>
             <div class="hero-actions">
                 <a class="btn-outline" href="#contact" (click)="scrollTo($event, 'contact')">تواصل معنا</a>
@@ -19,7 +19,7 @@
     <!-- About -->
     <section class="about" id="about" aria-labelledby="about-title">
         <div class="about-inner">
-            <div class="about-text">
+            <div class="about-text" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 100">
                 <app-section-heading eyebrow="قصتنا" title="خبرة تُبنى عليها الثقة" headingId="about-title"
                     align="start"></app-section-heading>
 
@@ -35,7 +35,7 @@
                 <a class="btn-fill about-btn" href="#products" (click)="scrollTo($event, 'products')">تصفح منتجاتنا</a>
             </div>
 
-            <div class="about-image">
+            <div class="about-image" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 250">
                 <img [src]="img + 'Gemini_Generated_Image_ohjp4iohjp4iohjp 2.png'"
                     alt="عبوة منتج المرسال كلر داخل موقع تشطيب" loading="lazy">
             </div>
@@ -44,10 +44,10 @@
 
     <!-- Products -->
     <section class="products" id="products" aria-labelledby="products-title">
-        <app-section-heading eyebrow="منتجاتنا" title="حلول متكاملة لكل مرحلة من مراحل التشطيب"
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="منتجاتنا" title="حلول متكاملة لكل مرحلة من مراحل التشطيب"
             headingId="products-title"></app-section-heading>
 
-        <ul class="product-grid">
+        <ul class="product-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
             <li *ngFor="let item of productArr" class="product-card">
                 <div class="product-image">
                     <img [src]="'assets/img/products/' + item.img" [alt]="item.name" loading="lazy">
@@ -66,12 +66,12 @@
         <div class="why-overlay"></div>
 
         <div class="why-inner">
-            <app-section-heading eyebrow="لماذا المرسال كلر؟" title="لماذا تختار منتجاتنا؟" headingId="why-title"
+            <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="لماذا المرسال كلر؟" title="لماذا تختار منتجاتنا؟" headingId="why-title"
                 [light]="true">
                 <p class="why-subtitle">لأن الجودة وحدها لا تكفي... المهم أن تجدها في كل مرة.</p>
             </app-section-heading>
 
-            <ul class="why-grid">
+            <ul class="why-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 150">
                 <li *ngFor="let item of featureArr" class="why-item">
                     <img [src]="item.icon" alt="">
                     <h3>{{item.title}}</h3>
@@ -83,12 +83,13 @@
 
     <!-- Stats -->
     <section class="stats" aria-labelledby="stats-title">
-        <app-section-heading eyebrow="أرقام تتحدث عنا" title="سنوات من العمل... وآلاف من قصص النجاح"
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="أرقام تتحدث عنا" title="سنوات من العمل... وآلاف من قصص النجاح"
             headingId="stats-title"></app-section-heading>
 
-        <ul class="stats-grid">
-            <li *ngFor="let item of statArr" class="stat">
-                <span class="stat-value" dir="ltr">{{item.value}}</span>
+        <ul class="stats-grid" #statsGrid uk-scrollspy="cls: uk-animation-fade; target: > li; delay: 100">
+            <li *ngFor="let item of statArr; let i = index" class="stat">
+                <span class="stat-value" dir="ltr" aria-hidden="true">{{statDisplay[i]}}</span>
+                <span class="sr-only">{{formatStat(item, item.value)}}</span>
                 <span class="stat-label">{{item.label}}</span>
             </li>
         </ul>
@@ -96,10 +97,10 @@
 
     <!-- Sectors -->
     <section class="sectors" aria-labelledby="sectors-title">
-        <app-section-heading eyebrow="الي من نقدم خدماتنا" title="نخدم مختلف القطاعات"
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="الي من نقدم خدماتنا" title="نخدم مختلف القطاعات"
             headingId="sectors-title"></app-section-heading>
 
-        <ul class="sector-grid">
+        <ul class="sector-grid" uk-scrollspy="cls: uk-animation-scale-up; target: > li; delay: 120">
             <li *ngFor="let item of sectorArr" class="sector">
                 <div class="sector-icon"><img [src]="item.icon" alt=""></div>
                 <h3>{{item.title}}</h3>
@@ -111,10 +112,10 @@
     <!-- Projects -->
     <section class="projects" id="projects" aria-labelledby="projects-title">
         <div class="projects-panel">
-            <app-section-heading eyebrow="مشروعات وثقت بنا" title="أعمالنا تتحدث عن جودة منتجاتنا"
+            <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="مشروعات وثقت بنا" title="أعمالنا تتحدث عن جودة منتجاتنا"
                 headingId="projects-title" [light]="true"></app-section-heading>
 
-            <div class="carousel" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event, 'project')">
+            <div class="carousel" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 150" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event, 'project')">
                 <ul class="carousel-track project-track" [style.--offset]="projectOffset">
                     <li *ngFor="let item of projectArr" class="project-card">
                         <img [src]="item.image" [alt]="item.title" loading="lazy">
@@ -136,7 +137,7 @@
         <img class="catalog-bg" [src]="img + 'pexels-steve-23889213 1.png'" alt="" loading="lazy">
         <div class="catalog-overlay"></div>
 
-        <div class="catalog-content">
+        <div class="catalog-content" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
             <h2 id="catalog-title">حمل كتالوج المنتجات</h2>
             <p>أكتشف كل ما تحتاجه من منتجاتنا</p>
             <button type="button" class="catalog-btn" (click)="openCatalog()">
@@ -148,10 +149,10 @@
 
     <!-- Testimonials -->
     <section class="testimonials" aria-labelledby="testimonials-title">
-        <app-section-heading eyebrow="أراء العملاء" title="ماذا يقول عملاؤنا؟"
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="أراء العملاء" title="ماذا يقول عملاؤنا؟"
             headingId="testimonials-title"></app-section-heading>
 
-        <div class="carousel" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event, 'testimonial')">
+        <div class="carousel" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 150" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event, 'testimonial')">
             <ul class="carousel-track testimonial-track" [style.--offset]="testimonialOffset">
                 <li *ngFor="let item of testimonialArr" class="testimonial">
                     <div class="stars" role="img" [attr.aria-label]="'التقييم ' + item.rating + ' من 5'">
@@ -172,10 +173,10 @@
 
     <!-- Partners -->
     <section class="partners" aria-labelledby="partners-title">
-        <app-section-heading eyebrow="شركاء النجاح" title="نفخر بشركائنا"
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="شركاء النجاح" title="نفخر بشركائنا"
             headingId="partners-title"></app-section-heading>
 
-        <div class="marquee">
+        <div class="marquee" uk-scrollspy="cls: uk-animation-fade; delay: 150">
             <ul class="marquee-track">
                 <li *ngFor="let item of partnerArr"><img [src]="item.image" [alt]="item.name" loading="lazy"></li>
                 <li *ngFor="let item of partnerArr" aria-hidden="true"><img [src]="item.image" alt=""
@@ -188,11 +189,11 @@
     <section class="contact" id="contact" aria-labelledby="contact-title">
         <div class="contact-inner">
 
-            <div class="contact-side">
+            <div class="contact-side" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 100">
                 <iframe class="map" [src]="mapUrl" title="موقع مصنع المرسال كلر على الخريطة" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 
-                <ul class="contact-info">
+                <ul class="contact-info" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
                     <li *ngFor="let item of contactInfoArr">
                         <img [src]="item.icon" alt="">
                         <h3>{{item.title}}</h3>
@@ -218,7 +219,7 @@
                 </ul>
             </div>
 
-            <form class="contact-form" (ngSubmit)="sendMessage()" novalidate>
+            <form class="contact-form" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200" (ngSubmit)="sendMessage()" novalidate>
                 <div class="form-heading">
                     <h2 id="contact-title">نحن هنا لمساعدتك</h2>
                     <p>جاهزين نساعدك تبدأ الخطوة التالية</p>
@@ -271,10 +272,10 @@
 
     <!-- FAQ -->
     <section class="faq" aria-labelledby="faq-title">
-        <app-section-heading eyebrow="الأسئلة الشائعة" title="كل ما تريد معرفته"
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="الأسئلة الشائعة" title="كل ما تريد معرفته"
             headingId="faq-title"></app-section-heading>
 
-        <ul class="faq-list">
+        <ul class="faq-list" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 80">
             <li *ngFor="let item of faqArr; let i = index" class="faq-item" [class.open]="openFaq === i">
                 <h3>
                     <button type="button" [attr.aria-expanded]="openFaq === i" [attr.aria-controls]="'faq-answer-' + i"

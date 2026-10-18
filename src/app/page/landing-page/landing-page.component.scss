@@ -31,6 +31,15 @@ section {
     position: relative;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
 // Shared buttons
 .btn-fill {
     @include pill-button;
@@ -88,6 +97,18 @@ section {
     height: 207.5%;
     object-fit: cover;
     object-position: left top;
+    transform-origin: left top;
+    animation: hero-zoom 8s ease-out both;
+}
+
+@keyframes hero-zoom {
+    from {
+        transform: scale(1.08);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
 
 .hero-overlay {
@@ -225,12 +246,24 @@ section {
 .product-image {
     width: 100%;
     aspect-ratio: 1;
+    overflow: hidden;
     background: #fff;
+    transition: transform .3s ease, box-shadow .3s ease;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform .4s ease;
+    }
+}
+
+.product-card:hover .product-image {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(16, 39, 71, .12);
+
+    img {
+        transform: scale(1.04);
     }
 }
 
@@ -341,6 +374,7 @@ section {
 
 .stat-value {
     @include font(800);
+    font-variant-numeric: tabular-nums;
     font-size: fl(70, 34);
     line-height: 1.36;
     color: $orange;
@@ -402,11 +436,17 @@ section {
     height: fl(146, 104);
     border-radius: 50%;
     background: #fff;
+    transition: transform .3s ease, box-shadow .3s ease;
 
     img {
         width: 55%;
         height: 55%;
     }
+}
+
+.sector:hover .sector-icon {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(16, 39, 71, .1);
 }
 
 /*
@@ -433,8 +473,11 @@ section {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .carousel-track {
+
+    .carousel-track,
+    .hero-bg {
         transition: none;
+        animation: none;
     }
 }
 
@@ -505,6 +548,11 @@ section {
     border-radius: 12px;
     background: #fff;
     box-shadow: 5px 11px 38.5px rgba(204, 204, 204, .25);
+    transition: transform .3s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+    }
 
     img {
         flex-shrink: 0;
