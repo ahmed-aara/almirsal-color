@@ -203,45 +203,6 @@
     }
 }
 
-.rating-line {
-    @include font(700);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 12px;
-    font-size: fs(17, 14);
-    color: $text-gray !important;
-    text-decoration: none !important;
-
-    &:hover,
-    &:focus-visible {
-        color: $orange !important;
-    }
-}
-
-.sample-tag {
-    padding: 2px 10px;
-    border-radius: 100px;
-    background: #fff3cd;
-    font-size: 13px;
-    color: #8a6d00;
-}
-
-.mini-stars {
-    display: flex;
-    gap: 3px;
-
-    img {
-        width: 18px;
-        height: 18px;
-
-        &.off {
-            filter: grayscale(1);
-            opacity: .3;
-        }
-    }
-}
-
 .summary {
     @include font(400);
     max-width: 640px;
@@ -367,11 +328,6 @@
 .section-inner {
     max-width: 1682px;
     margin: 0 auto;
-}
-
-.section-body {
-    display: block;
-    margin-top: fl(40, 28);
 }
 
 .sr-only {

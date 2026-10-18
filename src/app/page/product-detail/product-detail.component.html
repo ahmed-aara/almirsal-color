@@ -34,15 +34,6 @@
                     <span class="eyebrow">منتجاتنا</span>
                     <h1 id="product-title">{{productData.name}}</h1>
 
-                    <a class="rating-line" href="#reviews" (click)="scrollToSection($event, 'reviews')">
-                        <span class="mini-stars" aria-hidden="true">
-                            <img *ngFor="let s of [1,2,3,4,5]" src="assets/img/new-landing-page/icons/star.svg" alt=""
-                                [class.off]="s > averageRating">
-                        </span>
-                        <span>{{reviewArr.length ? averageRating + ' من 5 · ' + reviewArr.length + ' تقييم' : 'كن أول من يقيّم هذا المنتج'}}</span>
-                        <span *ngIf="sampleReviews" class="sample-tag">تجريبي</span>
-                    </a>
-
                     <p *ngIf="productData.summary" class="summary">{{productData.summary}}</p>
 
                     <div class="meta">
@@ -154,22 +145,10 @@
             </div>
         </section>
 
-        <!-- 3. Ratings & reviews -->
-        <section #pageSection id="reviews" class="page-section" aria-labelledby="reviews-title">
+        <!-- 3. Tips & advice -->
+        <section #pageSection id="tips" class="page-section" aria-labelledby="tips-title">
             <div class="section-inner">
                 <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="03"
-                    title="التقييمات والمراجعات" headingId="reviews-title" align="start"></app-section-heading>
-
-                <app-product-reviews class="section-body" uk-scrollspy="cls: uk-animation-fade; delay: 150"
-                    [productId]="productData.id" [productName]="productData.name"
-                    [reviews]="reviewArr" [sample]="sampleReviews"></app-product-reviews>
-            </div>
-        </section>
-
-        <!-- 4. Tips & advice -->
-        <section #pageSection id="tips" class="page-section alt" aria-labelledby="tips-title">
-            <div class="section-inner">
-                <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="04"
                     title="نصائح وإرشادات" headingId="tips-title" align="start"></app-section-heading>
 
                 <div *ngIf="productData.tips?.length" class="factory-tips" uk-scrollspy="cls: uk-animation-fade; delay: 150">

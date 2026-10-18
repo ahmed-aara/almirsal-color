@@ -20,7 +20,6 @@ import { ProductCardComponent } from './component/product-card/product-card.comp
 import { SiteFooterComponent } from './component/site-footer/site-footer.component';
 import { StatsComponent } from './component/stats/stats.component';
 import { CoverageCalculatorComponent } from './component/coverage-calculator/coverage-calculator.component';
-import { ProductReviewsComponent } from './component/product-reviews/product-reviews.component';
 import { ProductsComponent } from './page/products/products.component';
 
 @NgModule({
@@ -38,7 +37,6 @@ import { ProductsComponent } from './page/products/products.component';
     SiteFooterComponent,
     StatsComponent,
     CoverageCalculatorComponent,
-    ProductReviewsComponent,
     ProductsComponent
   ],
   imports: [

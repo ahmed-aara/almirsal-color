@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, QueryList, ViewChildren, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ServiceService } from 'src/app/services/service.service';
-import { Review } from 'src/app/component/product-reviews/product-reviews.component';
 import { TipStep, tipsFor } from './product-tips';
 
 @Component({
@@ -26,15 +25,11 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
   //Array
   productArr: any = []
   specificationArr: string[] = []
-  reviewArr: Review[] = []
-  // True when the shown reviews include preview samples (local development only)
-  sampleReviews = false
   tipSteps: TipStep[] = []
 
   sectionArr = [
     { id: 'details', label: 'تفاصيل المنتج' },
     { id: 'specs', label: 'المواصفات' },
-    { id: 'reviews', label: 'التقييمات والمراجعات' },
     { id: 'tips', label: 'نصائح وإرشادات' },
   ]
 
@@ -95,10 +90,6 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     if (!this.productData) return
 
     this.selectedImage = this.productData.img
-    // Reviews flagged "sample" in product.json are previews: shown in local development only
-    const reviews: Review[] = this.productData.reviews || []
-    this.reviewArr = isDevMode() ? reviews : reviews.filter(review => !review.sample)
-    this.sampleReviews = this.reviewArr.some(review => review.sample)
     this.tipSteps = tipsFor(this.productData.category)
     this.specificationArr = (this.productData.specification || '')
       .split('\n')
@@ -108,11 +99,6 @@ export class ProductDetailComponent implements OnInit, AfterViewInit, OnDestroy 
     const link = `${window.location.origin}/product/${this.productData.id}`
     this.askProductLink = this.whatsAppLink(`أريد معرفة التفاصيل أكثر عن *(${this.productData.name})*\n${link}`, 'ProductDetail')
     this.askQuestionLink = this.whatsAppLink(`عندي سؤال عن طريقة استخدام *(${this.productData.name})*\n${link}`, 'ProductQuestion')
-  }
-
-  get averageRating(): number {
-    if (!this.reviewArr.length) return 0
-    return Math.round(this.reviewArr.reduce((sum, review) => sum + review.rating, 0) / this.reviewArr.length * 10) / 10
   }
 
   selectImage(item: string) {
