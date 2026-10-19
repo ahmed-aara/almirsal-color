@@ -59,11 +59,57 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     { image: IMG + '6f79adb8-cf51-4e99-9791-cb2edc07c7d5.png', name: 'El-Sehami Construction' },
   ]
 
-  // TODO: replace with real questions and answers; text is the placeholder copy from the Figma design
-  faqArr = Array.from({ length: 6 }, () => ({
-    question: 'ما هو "لوريم إيبسوم" ؟',
-    answer: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم',
-  }))
+  // "points" are shown as a list under the answer. "index" is unique across groups (used to open/close).
+  faqGroupArr = [
+    {
+      title: 'جرافيتو الأكريليك ومواصفاته',
+      items: [
+        {
+          question: 'ما هي أسعار جرافيتو الأكريليك؟',
+          answer: 'تختلف حسب الفئة:',
+          points: ['الطن الاقتصادي: 5500 جنيه.', 'السوبر: 6500 جنيه.', 'الأكسترا سوبر: 7500 جنيه.'],
+        },
+        {
+          question: 'ما الفرق بين درجات الجرافيتو المختلفة؟',
+          answer: 'يكمن الفرق في نسبة الأكريليك والمواد الصلبة، مما يؤثر على الصلابة، ثبات اللون، وقدرة المادة على تحمل العوامل الجوية.',
+        },
+        {
+          question: 'كم مساحة يغطيها طن الجرافيتو؟',
+          answer: 'الطن الواحد (50 شكارة وزن 20 كجم) يغطي مساحة تقارب 300 متر مربع.',
+        },
+      ],
+    },
+    {
+      title: 'منتج "المرسال ميكس" (المحارة الجاهزة / السافيتو)',
+      items: [
+        {
+          question: 'ما هي مواصفات "المرسال ميكس" (المحارة الجاهزة/السافيتو)؟',
+          answer: 'هي مونة أسمنتية مضاف إليها أكاسيد تلوين وكوارتز ناعم، تتميز بمقاومة عالية للرطوبة والأمطار والاحتكاك، وتتوفر بملمس ناعم أو خشن (1، 2، 3 ملم).',
+        },
+        {
+          question: 'كم يغطي طن مادة "المرسال ميكس"؟',
+          answer: '',
+          points: ['الملمس الخشن: يغطي من 300 إلى 350 متر مربع لكل طن.', 'الملمس الناعم: يغطي من 350 إلى 400 متر مربع لكل طن.'],
+        },
+      ],
+    },
+    {
+      title: 'الخدمات والتوصيل',
+      items: [
+        {
+          question: 'هل تتوفر خدمة التوصيل لجميع المحافظات؟',
+          answer: 'نعم، التوريد متاح لجميع أنحاء الجمهورية، ويتم التوصيل عادةً خلال 48 ساعة عمل.',
+        },
+        {
+          question: 'هل تقومون بأعمال التنفيذ والمصنعية؟',
+          answer: 'نحن مصنع لتوريد الخامات فقط ولا نقدم خدمات التنفيذ.',
+        },
+      ],
+    },
+  ].reduce((groups: any[], group) => {
+    const start = groups.reduce((count, g) => count + g.items.length, 0)
+    return [...groups, { ...group, items: group.items.map((item: any, i) => ({ ...item, index: start + i })) }]
+  }, [])
 
   contactInfoArr = [
     { icon: IMG + 'icons/email.svg', title: 'البريد الإلكتروني', lines: ['info@almersalcolour.com'], href: 'mailto:info@almersalcolour.com' },

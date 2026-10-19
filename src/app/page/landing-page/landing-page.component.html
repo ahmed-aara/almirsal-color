@@ -265,18 +265,28 @@
         <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="الأسئلة الشائعة" title="كل ما تريد معرفته"
             headingId="faq-title"></app-section-heading>
 
-        <ul class="faq-list" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 80">
-            <li *ngFor="let item of faqArr; let i = index" class="faq-item" [class.open]="openFaq === i">
-                <h3>
-                    <button type="button" [attr.aria-expanded]="openFaq === i" [attr.aria-controls]="'faq-answer-' + i"
-                        (click)="toggleFaq(i)">
-                        <span>{{item.question}}</span>
-                        <img [src]="img + 'icons/chevron-down.svg'" alt="">
-                    </button>
-                </h3>
-                <p [id]="'faq-answer-' + i" [hidden]="openFaq !== i">{{item.answer}}</p>
-            </li>
-        </ul>
+        <div class="faq-list" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > .faq-group; delay: 100">
+            <div *ngFor="let group of faqGroupArr" class="faq-group">
+                <h3 class="faq-group-title">{{group.title}}</h3>
+                <ul>
+                    <li *ngFor="let item of group.items" class="faq-item" [class.open]="openFaq === item.index">
+                        <h4>
+                            <button type="button" [attr.aria-expanded]="openFaq === item.index"
+                                [attr.aria-controls]="'faq-answer-' + item.index" (click)="toggleFaq(item.index)">
+                                <span>{{item.question}}</span>
+                                <img [src]="img + 'icons/chevron-down.svg'" alt="">
+                            </button>
+                        </h4>
+                        <div [id]="'faq-answer-' + item.index" class="faq-answer" [hidden]="openFaq !== item.index">
+                            <p *ngIf="item.answer">{{item.answer}}</p>
+                            <ul *ngIf="item.points">
+                                <li *ngFor="let point of item.points">{{point}}</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </section>
 
 </main>
