@@ -458,6 +458,16 @@ section {
         button {
             flex-shrink: 0;
         }
+
+        // Smaller dots keep all twelve on one row down to 320px
+        @media (max-width: $bp-s - 1) {
+            gap: 8px;
+
+            button {
+                width: 12px;
+                height: 12px;
+            }
+        }
     }
 }
 
