@@ -1,0 +1,96 @@
+// Design tokens for the landing page (Figma frame "almersal" 2307:22, designed at 1920px).
+@use 'sass:math';
+
+$navy: #102747;
+$navy-dark: #0d1e36;
+$navy-ink: #1c274c;
+$orange: #f77b1a;
+$orange-icon: #f48041;
+$text-dark: #333333;
+$text-gray: #686868;
+$text-muted: #a6a6a6;
+$divider: #d9d9d9;
+$bg-page: #f8f8f8;
+$bg-warm: #f7f4f0;
+
+$bp-s: 640px;
+$bp-m: 960px;
+$bp-l: 1200px;
+
+// Scales a 1920px design value with the viewport, never above the design value
+// and never below $min.
+@function fl($max, $min) {
+    @return clamp(#{$min}px, #{math.div($max, 19.2)}vw, #{$max}px);
+}
+
+// Font sizes: the Figma sizes scaled down to a medium reading size.
+// Change $font-scale to make all landing page text larger or smaller.
+$font-scale: .8;
+
+@function fs($max, $min) {
+    @return fl(math.max(math.round($max * $font-scale), $min), math.max(math.round($min * .9), 13));
+}
+
+// Side gutter: 119px at 1920px, 16px on phones.
+$gutter: fl(119, 16);
+
+@mixin font($weight: 400) {
+    @if $weight >=800 {
+        font-family: "Almarai-ExtraBold", sans-serif;
+    } @else if $weight >=700 {
+        font-family: "Almarai-Bold", sans-serif;
+    } @else if $weight <=300 {
+        font-family: "Almarai-Light", sans-serif;
+    } @else {
+        font-family: "Almarai-Regular", sans-serif;
+    }
+}
+
+@mixin pill-button($bg: $orange, $color: #fff) {
+    @include font(700);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    background: $bg;
+    color: $color !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: filter .2s ease, background-color .2s ease;
+
+    &:hover,
+    &:focus-visible {
+        filter: brightness(1.08);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $orange;
+        outline-offset: 3px;
+    }
+}
+
+// 4-up product grid (2-up on tablets and phones, 1-up on very narrow phones)
+@mixin product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: fl(24, 16);
+    max-width: 1352px;
+    margin: fl(62, 32) auto 0 !important;
+    padding: 0;
+    list-style: none;
+
+    @media (max-width: $bp-m - 1) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 664px;
+    }
+
+    @media (max-width: $bp-s - 1) {
+        gap: 24px 12px;
+    }
+
+    @media (max-width: 359px) {
+        grid-template-columns: minmax(0, 300px);
+        justify-content: center;
+    }
+}

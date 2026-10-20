@@ -1,6 +1,13 @@
-<app-nav-bar [navbar_type]="navbar_type"></app-nav-bar>
+<!-- Pages on the new design (home, products, product details, about) use the new header and footer -->
+<ng-container *ngIf="newTheme !== null">
+    <app-home-header *ngIf="newTheme"></app-home-header>
+    <app-nav-bar *ngIf="!newTheme" [navbar_type]="navbar_type"></app-nav-bar>
+</ng-container>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<ng-container *ngIf="newTheme !== null">
+    <app-site-footer *ngIf="newTheme"></app-site-footer>
+    <app-footer *ngIf="!newTheme"></app-footer>
+</ng-container>
 
 <!-- This is the modal with the default close button -->
 <div id="modal-close-default" uk-modal>

@@ -1,114 +1,208 @@
-<section class="sec_detail py-4">
+<main class="product-page" dir="rtl" lang="ar">
 
-    <div *ngIf="loaded_" class="uk-container">
+    <nav class="breadcrumb" aria-label="مسار التنقل">
+        <ol>
+            <li><a routerLink="/">الرئيسية</a></li>
+            <li><a routerLink="/products">المنتجات</a></li>
+            <li *ngIf="productData" aria-current="page">{{productData.name}}</li>
+        </ol>
+    </nav>
 
-        <div class="uk-grid-small uk-flex-middle" uk-grid>
+    <ng-container *ngIf="loaded_ && productData">
 
-            <div class="uk-width-2-3@l">
+        <!-- Product -->
+        <section #pageSection class="detail" data-nav="details" aria-labelledby="product-title">
+            <div class="detail-inner">
 
-                <div class="product_box">
-
-                    <div *ngIf="productData.images.length !== 1" class="side_img">
-
-                        <div class="img_column">
-
-                            <div *ngFor="let item of productData.images" class="item_"
-                                uk-scrollspy="cls: uk-animation-fade; target: .other-image; delay: 200; repeat: false">
-
-                                <div class="other-image"
-                                    [style]="productData.img === item? '--border-color: #EBA771' : '--border-color: white'">
-                                    <img class="full_w full_h cursor" (click)="selectImage(item)"
-                                        [src]="'assets/img/products/' + item" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-
+                <div class="gallery" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 100">
+                    <div class="main-image">
+                        <img [src]="'assets/img/products/' + selectedImage" [alt]="productData.name">
                     </div>
 
-                    <div class="product_img" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">
-                        <img class="full_w full_h" [src]="'assets/img/products/' + productData.img" alt="">
-                    </div>
-
+                    <ul *ngIf="productData.images?.length > 1" class="thumbs" aria-label="صور المنتج">
+                        <li *ngFor="let item of productData.images; let i = index">
+                            <button type="button" [class.active]="selectedImage === item"
+                                [attr.aria-pressed]="selectedImage === item" [attr.aria-label]="'عرض الصورة ' + (i + 1)"
+                                (click)="selectImage(item)">
+                                <img [src]="'assets/img/products/' + item" alt="" loading="lazy">
+                            </button>
+                        </li>
+                    </ul>
                 </div>
 
-            </div>
+                <div class="info" uk-scrollspy="cls: uk-animation-slide-left-small; target: > *; delay: 80">
+                    <span class="eyebrow">منتجاتنا</span>
+                    <h1 id="product-title">{{productData.name}}</h1>
 
-            <div class="uk-width-expand@l">
+                    <p *ngIf="productData.summary" class="summary">{{productData.summary}}</p>
 
-                <div class="text-right">
-
-                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" class="f_Bold">{{
-                        productData.name }}</h3>
-                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 350; repeat: false" class="f_Bold nescafeC_">{{
-                        productData.price | number : '1.2-2' }} جنيه</h3>
-
-                    <div uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false"
-                        class="uk-flex uk-flex-middle uk-flex-right">
-                        <p [class]="productData.available ? 'greenC_' : 'redC_'" class="f_Bold px-1">متوفر في المتجر</p>
-                        <img width="20px"
-                            [src]="'assets/img/vector/' + (productData.available ? 'check' : 'close') + '.svg'" alt="">
+                    <div class="meta">
+                        <span class="price">{{productData.price | number : '1.2-2'}} جنيه</span>
+                        <span class="stock" [class.out]="!productData.available">
+                            {{productData.available ? 'متوفر في المتجر' : 'غير متوفر حالياً'}}
+                        </span>
                     </div>
 
-                    <div class="my-1">
-
-                        <a uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false" [href]="contactLink"
-                            target="_blank" style="--bg: #45270F;" class="mr-1 a_decoration">
-                            <div class="uk-flex uk-flex-middle uk-flex-center">
-                                <img src="assets/img/vector/phone_white.svg" alt="">
-                                <p class="whiteC_ f_Bold a_decoration">اتصل</p>
-                            </div>
+                    <div class="actions">
+                        <a class="btn-fill" [href]="askProductLink" target="_blank" rel="noopener">
+                            <img src="assets/img/new-landing-page/icons/whatsapp.svg" alt="">
+                            <span>احصل على المنتج</span>
                         </a>
-
-                        <a uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false" [href]="askProductLink"
-                            target="_blank" style="--bg: #27AE60;" class="a_decoration">
-                            <div class="uk-flex uk-flex-middle uk-flex-center">
-                                <img src="assets/img/vector/bag_white.svg" alt="">
-                                <p class="whiteC_ f_Bold a_decoration">احصل على المنتج</p>
-                            </div>
+                        <a class="btn-outline" [href]="callLink">
+                            <img src="assets/img/new-landing-page/icons/phone.svg" alt="">
+                            <span>اتصل بنا</span>
                         </a>
-
                     </div>
-
-                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 550; repeat: false" class="f_Bold mb-1">تفاصيل
-                        المنتج</h3>
-                    <p uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false"
-                        class="white_space nescafeC_ specification_"> {{ productData.specification }} </p>
-
                 </div>
 
             </div>
+        </section>
 
-        </div>
+        <!-- Section navigation -->
+        <nav class="section-nav" aria-label="أقسام صفحة المنتج">
+            <ul>
+                <li *ngFor="let item of sectionArr">
+                    <a [href]="'#' + item.id" [class.active]="activeSection === item.id"
+                        [attr.aria-current]="activeSection === item.id ? 'true' : null"
+                        (click)="scrollToSection($event, item.id)">{{item.label}}</a>
+                </li>
+            </ul>
+        </nav>
 
-        <h3 class="f_Bold text-center mt-4" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">ربما يعجبك
-            هذا ايضاً</h3>
+        <!-- 1. Details -->
+        <section #pageSection id="details" class="page-section" aria-labelledby="details-title">
+            <div class="section-inner">
+                <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="01"
+                    title="تفاصيل المنتج" headingId="details-title" align="start"></app-section-heading>
 
-        <div class="product_">
+                <div class="details-grid">
+                    <div class="details-text" uk-scrollspy="cls: uk-animation-fade; delay: 150">
+                        <p class="lead">{{productData.summary}}</p>
 
-            <div class="uk-grid-medium uk-child-width-1-4@l mt-3" uk-grid
-                uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 200; repeat: false">
-
-                <div *ngFor="let item of productArr">
-
-                    <div class="card_ text-center">
-                        <div class="bg whiteBG_">
-                            <img [src]="'assets/img/products/' + item.img" alt="">
-                        </div>
-
-                        <h5 class="mt-1">{{item.name}}</h5>
-                        <h5 hidden class="nescafeC_ f_Bold">{{item.price | number : '1.2-2'}} جنيه</h5>
-                        <a (click)="detail(item.id)" class="a_decoration" [routerLink]="'/product/' + item.id">اعرف
-                            التفاصيل</a>
-
+                        <h3 *ngIf="productData.features?.length">مميزات المنتج</h3>
+                        <ul class="features" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 80">
+                            <li *ngFor="let item of productData.features">
+                                <span class="tick" aria-hidden="true">✓</span>
+                                <span>{{item}}</span>
+                            </li>
+                        </ul>
                     </div>
 
+                    <ul class="trust p-2" uk-scrollspy="cls: uk-animation-slide-left-small; target: > li; delay: 120">
+                        <li *ngFor="let item of trustArr">
+                            <img [src]="item.icon" alt="">
+                            <div>
+                                <h4>{{item.title}}</h4>
+                                <p>{{item.text}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Specifications -->
+        <section #pageSection id="specs" class="page-section alt" aria-labelledby="specs-title">
+            <div class="section-inner">
+                <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="02"
+                    title="مواصفات المنتج" headingId="specs-title" align="start"></app-section-heading>
+
+                <div class="specs-grid" [class.single]="!productData.coverage">
+                    <div class="specs-card" uk-scrollspy="cls: uk-animation-fade; delay: 150">
+                        <table class="spec-table">
+                            <caption class="sr-only">مواصفات {{productData.name}}</caption>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">كود المنتج</th>
+                                    <td dir="ltr">#{{productData.id}}</td>
+                                </tr>
+                                <tr *ngFor="let row of productData.specs">
+                                    <th scope="row">{{row.label}}</th>
+                                    <td>{{row.value}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">السعر</th>
+                                    <td>{{productData.price | number : '1.2-2'}} جنيه</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">الحالة</th>
+                                    <td>{{productData.available ? 'متوفر' : 'غير متوفر حالياً'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <details class="factory-sheet">
+                            <summary>البيانات الفنية كما وردت من المصنع</summary>
+                            <ul>
+                                <li *ngFor="let line of specificationArr">{{line}}</li>
+                            </ul>
+                        </details>
+                    </div>
+
+                    <app-coverage-calculator *ngIf="productData.coverage" [coverage]="productData.coverage"
+                        uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200"></app-coverage-calculator>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Tips & advice -->
+        <section #pageSection id="tips" class="page-section" aria-labelledby="tips-title">
+            <div class="section-inner">
+                <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="03"
+                    title="نصائح وإرشادات" headingId="tips-title" align="start"></app-section-heading>
+
+                <div *ngIf="productData.tips?.length" class="factory-tips" uk-scrollspy="cls: uk-animation-fade; delay: 150">
+                    <div class="factory-tips-head">
+                        <span class="badge">من المصنع</span>
+                        <h3>طريقة الاستخدام الموصى بها لـ {{productData.name}}</h3>
+                    </div>
+                    <ol>
+                        <li *ngFor="let tip of productData.tips">{{tip}}</li>
+                    </ol>
                 </div>
 
+                <ol class="steps" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
+                    <li *ngFor="let step of tipSteps; let i = index" class="step">
+                        <span class="step-number" dir="ltr" aria-hidden="true">0{{i + 1}}</span>
+                        <h3>{{step.title}}</h3>
+                        <ul>
+                            <li *ngFor="let tip of step.tips">{{tip}}</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="ask" uk-scrollspy="cls: uk-animation-scale-up; delay: 150">
+                    <div>
+                        <h3>عندك سؤال عن طريقة الاستخدام؟</h3>
+                        <p>فريقنا جاهز يساعدك تختار الطريقة والكمية المناسبة لمشروعك.</p>
+                    </div>
+                    <a class="btn-fill" [href]="askQuestionLink" target="_blank" rel="noopener">
+                        <img src="assets/img/new-landing-page/icons/whatsapp.svg" alt="">
+                        <span>اسأل خبراءنا</span>
+                    </a>
+                </div>
             </div>
+        </section>
 
-        </div>
+    </ng-container>
 
-    </div>
+    <!-- Unknown product id -->
+    <section *ngIf="loaded_ && notFound" class="not-found">
+        <h1>لم نجد هذا المنتج</h1>
+        <p>ربما تم تغيير الرابط أو لم يعد المنتج متاحاً. تصفح منتجاتنا لتجد ما تحتاجه.</p>
+        <a class="btn-fill" routerLink="/products">تصفح منتجاتنا</a>
+    </section>
 
-</section>
+    <!-- Related products -->
+    <section *ngIf="loaded_ && productArr.length" class="related" aria-labelledby="related-title">
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="منتجات أخرى"
+            title="ربما يعجبك هذا أيضاً" headingId="related-title"></app-section-heading>
+
+        <ul class="product-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
+            <li *ngFor="let item of productArr">
+                <app-product-card [product]="item"></app-product-card>
+            </li>
+        </ul>
+    </section>
+
+</main>

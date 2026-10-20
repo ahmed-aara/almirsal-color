@@ -1,0 +1,129 @@
+<main class="products-page" dir="rtl" lang="ar">
+
+    <!-- Banner -->
+    <section class="banner" aria-labelledby="products-title">
+        <img class="banner-bg" src="assets/img/new-landing-page/pexels-steve-23889213 1.png" alt="">
+        <div class="banner-overlay"></div>
+
+        <div class="banner-content" uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: > *; delay: 120">
+            <nav class="breadcrumb" aria-label="مسار التنقل">
+                <ol>
+                    <li><a routerLink="/">الرئيسية</a></li>
+                    <li aria-current="page">المنتجات</li>
+                </ol>
+            </nav>
+
+            <span class="eyebrow">منتجاتنا</span>
+            <h1 id="products-title">كل ما تحتاجه لتشطيب مشروعك</h1>
+            <p>دهانات وموانات ومعاجين ولواصق بجودة مصرية، لكل مرحلة من مراحل التشطيب.</p>
+
+            <label class="search">
+                <span class="sr-only">ابحث عن منتج</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.5-3.5" />
+                </svg>
+                <input type="search" placeholder="ابحث عن منتج، مثل: جرافيتو أو معجون" [ngModel]="search"
+                    (ngModelChange)="onSearch($event)" autocomplete="off">
+            </label>
+
+            <ul *ngIf="loaded_" class="facts">
+                <li><strong dir="ltr">{{productArr.length}}</strong> منتج</li>
+                <li><strong dir="ltr">{{categoryArr.length}}</strong> فئات</li>
+                <li><strong>صناعة</strong> مصرية</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <div class="toolbar">
+        <div class="toolbar-inner">
+            <ul class="chips" aria-label="تصفية حسب الفئة">
+                <li>
+                    <button type="button" [class.active]="category === 'all'" [attr.aria-pressed]="category === 'all'"
+                        (click)="setCategory('all')">
+                        الكل <span class="count">{{productArr.length}}</span>
+                    </button>
+                </li>
+                <li *ngFor="let item of categoryArr">
+                    <button type="button" [class.active]="category === item.id" [attr.aria-pressed]="category === item.id"
+                        (click)="setCategory(item.id)">
+                        {{item.label}} <span class="count">{{item.count}}</span>
+                    </button>
+                </li>
+            </ul>
+
+            <label class="sort">
+                <span>ترتيب:</span>
+                <select [ngModel]="sort" (ngModelChange)="setSort($event)">
+                    <option *ngFor="let item of sortArr" [value]="item.id">{{item.label}}</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <section class="results" aria-label="نتائج المنتجات">
+        <div class="results-inner">
+
+            <div *ngIf="loaded_" class="results-head" aria-live="polite">
+                <p>
+                    <strong>{{filteredArr.length}}</strong>
+                    {{filteredArr.length === 1 ? 'منتج' : 'منتجات'}}
+                    <ng-container *ngIf="category !== 'all'"> في <strong>{{categoryLabel}}</strong></ng-container>
+                    <ng-container *ngIf="search"> تطابق «<strong>{{search}}</strong>»</ng-container>
+                </p>
+                <button *ngIf="hasFilters" type="button" class="clear" (click)="clearFilters()">مسح الفلاتر ✕</button>
+            </div>
+
+            <ul *ngIf="filteredArr.length" class="product-grid">
+                <li *ngFor="let item of filteredArr; let i = index; trackBy: trackById" class="product-item"
+                    [style.animation-delay.ms]="i * 50">
+                    <app-product-card [product]="item"></app-product-card>
+                </li>
+            </ul>
+
+            <!-- Loading -->
+            <ul *ngIf="!loaded_" class="product-grid" aria-hidden="true">
+                <li *ngFor="let item of [1,2,3,4,5,6,7,8]" class="skeleton">
+                    <span class="sk-image"></span>
+                    <span class="sk-line"></span>
+                    <span class="sk-line short"></span>
+                </li>
+            </ul>
+
+            <!-- No results -->
+            <div *ngIf="loaded_ && !filteredArr.length" class="empty">
+                <div class="empty-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.5-3.5" />
+                    </svg>
+                </div>
+                <h2>لم نجد منتجات مطابقة</h2>
+                <p>جرّب كلمة بحث مختلفة أو اختر فئة أخرى، أو اسألنا مباشرة وسنساعدك.</p>
+                <button type="button" class="btn-fill" (click)="clearFilters()">عرض كل المنتجات</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Help -->
+    <section class="help" aria-labelledby="help-title">
+        <div class="help-panel" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+            <div>
+                <span class="eyebrow">مش عارف تختار؟</span>
+                <h2 id="help-title">خبراؤنا يساعدوك تختار المنتج والكمية المناسبة</h2>
+                <p>ابعتلنا تفاصيل مشروعك على واتساب وهنرشحلك الأنسب ليك.</p>
+            </div>
+            <div class="help-actions">
+                <a class="btn-fill" [href]="helpLink" target="_blank" rel="noopener">
+                    <img src="assets/img/new-landing-page/icons/whatsapp.svg" alt="">
+                    <span>اسأل خبراءنا</span>
+                </a>
+                <a class="btn-outline" routerLink="/" fragment="contact">تواصل معنا</a>
+            </div>
+        </div>
+    </section>
+
+</main>

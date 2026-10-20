@@ -1,50 +1,124 @@
-<section class="sec_about">
+<main class="about-page" dir="rtl" lang="ar">
 
-    <div class="uk-container">
+    <!-- Banner -->
+    <section class="banner" aria-labelledby="about-title">
+        <img class="banner-bg" src="assets/img/bg_3.png" alt="">
+        <div class="banner-overlay"></div>
 
-        <div class="uk-grid-small uk-child-width-1-2@l uk-flex-middle" uk-grid>
-
-            <div>
-                <div class="bg_">
-                    <img class="full_w full_h" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false"
-                        src="assets/img/about_bg.png" alt="">
-                </div>
-            </div>
-
-            <div>
-
-                <div class="text-right">
-
-                    <h1 class="f_Bold" uk-scrollspy="cls: uk-animation-fade; delay: 350; repeat: false">المرسال كلر</h1>
-                    <h1 class="f_Bold lightbrownC_" uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">
-                        لكيماويات البناء الحديث</h1>
-
-                    <p class="f_Bold mt-2" uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false">
-                        تعتبر شركة المرسال كلر هي الشهيرة في مجال التكنولوجيا وتطوير الدهانات والبويات الحديثة و تشطيب
-                        المباني ذات الأساس الاكريليك والأسمنتي في جمهورية مصر العربية
-                    </p>
-
-                    <p uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false">
-                        <br>
-                        شركة المرسال كلر للدهانات الحديثة تم تأسيسها لصناعة الدهانات الانشائية وخاصة الخارجية لتتربع علي
-                        عرش مصنعي الدهانات في مصر والوطن العربي وتفتخر الشركة بأن جميع منتجاتها صناعة مصرية حاصلة علي
-                        أعلي شهادات الجودة التي تمنحها الهيئات المختصة في مصر .
-                        <br><br>
-                        تأسست شركة المرسال في عام 2010 ، وهي شركة رائدة في تصميم وصياغة وإنتاج مواد التشطيب ومنتجات
-                        وأنظمة الأداء لصناعة البناء
-                        يقدم فريقنا المتخصص المكون من 1000 محترف حلولا مبتكرة وصديقة للبيئة للعملاء في أكثر من 28محافظه
-                        في جميع أنحاء الجمهورية نحن نستخدم المواد الخام وتقنيات الإنتاج المختارة والمطورة بعناية لصياغة
-                        وتصنيع المنتجات التي تحل مشاكل عملائنا. وهذا يمكننا من تقديم منتجات وتشطيبات متطورة وعاليه
-                        الجودة ذات تصميم فريد لذلك توفر قيمة مقنعة من خلال المتانة والكفاءة الأفضل في فئتها.
-                    </p>
-
-                </div>
-
-            </div>
-
+        <div class="banner-content" uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: > *; delay: 150">
+            <nav class="breadcrumb" aria-label="مسار التنقل">
+                <ol>
+                    <li><a routerLink="/">الرئيسية</a></li>
+                    <li aria-current="page">عن الشركة</li>
+                </ol>
+            </nav>
+            <span class="eyebrow">عن الشركة</span>
+            <h1 id="about-title">المرسال كلر لكيماويات البناء الحديث</h1>
+            <p>تعتبر شركة المرسال كلر من الشركات الرائدة في مجال تكنولوجيا وتطوير الدهانات والبويات الحديثة وتشطيب
+                المباني ذات الأساس الأكريليك والأسمنتي في جمهورية مصر العربية.</p>
         </div>
+    </section>
 
+    <!-- Who we are -->
+    <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-inner">
+            <div class="intro-text" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 100">
+                <app-section-heading eyebrow="من نحن" title="صناعة مصرية بمعايير جودة عالية" headingId="intro-title"
+                    align="start"></app-section-heading>
 
-    </div>
+                <div class="intro-body">
+                    <p>شركة المرسال كلر للدهانات الحديثة تأسست لصناعة الدهانات الإنشائية وخاصة الخارجية، وتفخر الشركة بأن
+                        جميع منتجاتها صناعة مصرية حاصلة على أعلى شهادات الجودة التي تمنحها الهيئات المختصة في مصر.</p>
+                    <p>تأسست شركة المرسال في عام 2010، وهي شركة رائدة في تصميم وصياغة وإنتاج مواد التشطيب ومنتجات وأنظمة
+                        الأداء لصناعة البناء. يقدم فريقنا المتخصص المكون من 1000 محترف حلولاً مبتكرة وصديقة للبيئة للعملاء في أكثر من 28
+                        محافظة في جميع أنحاء الجمهورية.</p>
+                    <p>نستخدم مواد خام وتقنيات إنتاج مختارة ومطورة بعناية لصياغة وتصنيع منتجات تحل مشاكل عملائنا، وهذا
+                        يمكننا من تقديم منتجات وتشطيبات متطورة وعالية الجودة توفر قيمة حقيقية من خلال المتانة والكفاءة.</p>
+                </div>
 
-</section>
+                <a class="btn-fill" routerLink="/products">تصفح منتجاتنا</a>
+            </div>
+
+            <div class="intro-image" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 250">
+                <img src="assets/img/about_bg.png" alt="واجهات مبانٍ تم تشطيبها بمنتجات المرسال كلر" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="numbers" aria-labelledby="numbers-title">
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="أرقام تتحدث عنا"
+            title="سنوات من العمل... وآلاف من قصص النجاح" headingId="numbers-title"></app-section-heading>
+        <app-stats></app-stats>
+    </section>
+
+    <!-- What we make -->
+    <section class="specialties" aria-labelledby="specialties-title">
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="ماذا نقدم"
+            title="متخصصون في إنتاج وتوريد مواد التشطيب" headingId="specialties-title"></app-section-heading>
+
+        <ul class="specialty-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 100">
+            <li *ngFor="let item of specialtyArr; let i = index" class="specialty">
+                <span class="number" dir="ltr" aria-hidden="true">{{(i + 1) < 10 ? '0' + (i + 1) : (i + 1)}}</span>
+                <h3>{{item.title}}</h3>
+                <p>{{item.description}}</p>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Vision -->
+    <section class="vision" aria-labelledby="vision-title">
+        <div class="vision-inner">
+            <div class="vision-image" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+                <img src="assets/img/img_work.png" alt="مبانٍ سكنية بواجهات من منتجات المرسال كلر" loading="lazy">
+            </div>
+
+            <div class="vision-text" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200">
+                <app-section-heading eyebrow="رؤيتنا" title="الريادة في صناعة مواد الواجهات" headingId="vision-title"
+                    align="start"></app-section-heading>
+                <blockquote>
+                    أن تصبح شركة المرسال كلر رائدة في مجال تصنيع وتنفيذ مواد الواجهات في مصر والشرق الأوسط، بالجودة
+                    العالية وأقل الأسعار وأفضل الخدمات.
+                </blockquote>
+                <ul class="vision-points">
+                    <li>جودة تواكب متطلبات أعمال التشطيب المختلفة</li>
+                    <li>أسعار تنافسية مع الحفاظ على جودة الخامات</li>
+                    <li>توريد سريع لتستمر أعمالك بدون تعطيل</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approved projects -->
+    <section class="approved" aria-labelledby="approved-title">
+        <img class="approved-bg" src="assets/img/new-landing-page/pexels-laura-tancredi-7078055 2.png" alt=""
+            loading="lazy">
+        <div class="approved-overlay"></div>
+
+        <div class="approved-inner">
+            <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100"
+                eyebrow="ثقة كبار المشروعات" title="مشروعات اعتمدت منتجاتنا" headingId="approved-title"
+                [light]="true"></app-section-heading>
+
+            <ul class="approved-list" uk-scrollspy="cls: uk-animation-fade; target: > li; delay: 70">
+                <li *ngFor="let item of approvedProjectArr">
+                    <img src="assets/img/new-landing-page/icons/location.svg" alt="">
+                    <span>{{item}}</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="cta" aria-labelledby="cta-title">
+        <div class="cta-panel" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
+            <h2 id="cta-title">جاهز تبدأ مشروعك القادم؟</h2>
+            <p>تواصل معنا ونساعدك تختار المنتجات المناسبة لمشروعك.</p>
+            <div class="cta-actions">
+                <a class="btn-fill" routerLink="/" fragment="contact">تواصل معنا</a>
+                <a class="btn-outline" routerLink="/products">تصفح منتجاتنا</a>
+            </div>
+        </div>
+    </section>
+
+</main>

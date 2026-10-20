@@ -1,0 +1,7 @@
+<ul class="stats-grid" #statsGrid uk-scrollspy="cls: uk-animation-fade; target: > li; delay: 100">
+    <li *ngFor="let item of statArr; let i = index" class="stat">
+        <span class="stat-value" dir="ltr" aria-hidden="true">{{statDisplay[i]}}</span>
+        <span class="sr-only">{{formatStat(item, item.value)}}</span>
+        <span class="stat-label">{{item.label}}</span>
+    </li>
+</ul>

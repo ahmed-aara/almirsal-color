@@ -13,6 +13,10 @@ export class AppComponent implements OnInit {
 
   option: any;
   navbar_type: any;
+  newTheme: boolean | null = null;
+
+  // Routes (first path segment) that use the new landing page design
+  private newThemeRoutes = ['', 'product', 'products', 'about'];
 
   //Data
   messageData = {
@@ -32,6 +36,7 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationStart) {
         const urlDelimitators = new RegExp(/[?//,;&:#$+=]/);
         let currentUrlPath = event.url.slice(1).split(urlDelimitators)[0];
+        this.newTheme = this.newThemeRoutes.includes(currentUrlPath);
 
         var route = ['']
         for (var i = 0; i <= route.length; i++) {

@@ -1,0 +1,42 @@
+@use '../../page/landing-page/tokens' as *;
+
+// Block so scroll animations (transforms) apply to the host
+:host {
+    display: block;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+    direction: rtl;
+
+    &.start {
+        align-items: flex-start;
+        text-align: right;
+    }
+}
+
+.eyebrow {
+    @include font(700);
+    font-size: fs(22, 15);
+    line-height: 1.36;
+    color: $orange;
+}
+
+.title {
+    @include font(700);
+    font-size: fs(40, 24);
+    line-height: 1.36;
+    color: $navy !important;
+}
+
+.light {
+
+    .eyebrow,
+    .title {
+        color: #fff !important;
+    }
+}

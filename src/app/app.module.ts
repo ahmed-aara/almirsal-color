@@ -14,6 +14,13 @@ import { ProductDetailComponent } from './page/product-detail/product-detail.com
 import { FooterComponent } from './component/footer/footer.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { IncludePipe } from './pipe/include.pipe';
+import { HomeHeaderComponent } from './component/home-header/home-header.component';
+import { SectionHeadingComponent } from './component/section-heading/section-heading.component';
+import { ProductCardComponent } from './component/product-card/product-card.component';
+import { SiteFooterComponent } from './component/site-footer/site-footer.component';
+import { StatsComponent } from './component/stats/stats.component';
+import { CoverageCalculatorComponent } from './component/coverage-calculator/coverage-calculator.component';
+import { ProductsComponent } from './page/products/products.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +30,14 @@ import { IncludePipe } from './pipe/include.pipe';
     ProductDetailComponent,
     FooterComponent,
     NavBarComponent,
-    IncludePipe
+    IncludePipe,
+    HomeHeaderComponent,
+    SectionHeadingComponent,
+    ProductCardComponent,
+    SiteFooterComponent,
+    StatsComponent,
+    CoverageCalculatorComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

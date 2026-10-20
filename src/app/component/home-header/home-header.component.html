@@ -1,0 +1,44 @@
+<header class="home-header" dir="rtl">
+    <div class="inner">
+
+        <a class="logo" routerLink="/" aria-label="المرسال كلر - الصفحة الرئيسية">
+            <img src="assets/img/logo.png" alt="المرسال كلر لكيماويات البناء الحديث">
+        </a>
+
+        <nav class="desktop-nav" aria-label="القائمة الرئيسية">
+            <ul class="links">
+                <li *ngFor="let link of links">
+                    <a *ngIf="link.route" [routerLink]="link.route" [class.active]="isActive(link)"
+                        [attr.aria-current]="isActive(link) ? 'page' : null">{{link.name}}</a>
+                    <a *ngIf="link.fragment" [href]="'/#' + link.fragment" [class.active]="isActive(link)"
+                        (click)="goToSection($event, link.fragment)">{{link.name}}</a>
+                </li>
+            </ul>
+            <a class="cta" href="/#contact" (click)="goToSection($event, 'contact')">تواصل معنا</a>
+        </nav>
+
+        <button class="menu-toggle" type="button" uk-toggle="target: #home-offcanvas-menu"
+            aria-label="فتح القائمة" [attr.aria-controls]="menuId">
+            <img src="assets/img/menu_white.svg" alt="">
+        </button>
+
+    </div>
+</header>
+
+<div id="home-offcanvas-menu" class="home-offcanvas" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar" dir="rtl">
+        <button class="uk-offcanvas-close" type="button" uk-close aria-label="إغلاق القائمة"></button>
+
+        <nav aria-label="القائمة الرئيسية">
+            <ul class="menu-links">
+                <li *ngFor="let link of links">
+                    <a *ngIf="link.route" [routerLink]="link.route" [class.active]="isActive(link)"
+                        (click)="closeMenu()">{{link.name}}</a>
+                    <a *ngIf="link.fragment" [href]="'/#' + link.fragment" [class.active]="isActive(link)"
+                        (click)="goToSection($event, link.fragment)">{{link.name}}</a>
+                </li>
+            </ul>
+            <a class="cta" href="/#contact" (click)="goToSection($event, 'contact')">تواصل معنا</a>
+        </nav>
+    </div>
+</div>

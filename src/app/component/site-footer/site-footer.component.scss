@@ -1,0 +1,14 @@
+@use '../../page/landing-page/tokens' as *;
+
+.site-footer {
+    padding: fl(52, 28) $gutter;
+    background: $bg-page;
+    text-align: center;
+
+    p {
+        @include font(400);
+        font-size: fs(20, 14);
+        line-height: 1.12;
+        color: $text-dark !important;
+    }
+}

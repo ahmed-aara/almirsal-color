@@ -1,0 +1,9 @@
+<article class="product-card">
+    <div class="product-image">
+        <img [src]="'assets/img/products/' + product.img" [alt]="product.name" loading="lazy">
+    </div>
+    <h3>{{product.name}}</h3>
+    <span class="price">{{product.price | number : '1.2-2'}} جنيه</span>
+    <a class="details-btn" [routerLink]="'/product/' + product.id"
+        [attr.aria-label]="'أعرف التفاصيل عن ' + product.name">أعرف التفاصيل</a>
+</article>
