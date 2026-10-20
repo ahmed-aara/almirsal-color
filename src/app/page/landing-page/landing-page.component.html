@@ -1,5 +1,13 @@
 <main class="landing" dir="rtl" lang="ar">
 
+    <!-- WhatsApp call to action, one per section (labels and messages in ctaArr) -->
+    <ng-template #waCta let-cta let-cls="cls">
+        <a class="wa-cta" [ngClass]="cls" [href]="cta.href" target="_blank" rel="noopener">
+            <img [src]="img + 'icons/whatsapp.svg'" alt="">
+            <span>{{cta.label}}</span>
+        </a>
+    </ng-template>
+
     <!-- Hero -->
     <section class="hero" aria-labelledby="hero-title">
         <img class="hero-bg" [src]="img + 'pexels-wiki15-canton-598594475-28681439 1.png'" alt="" fetchpriority="high">
@@ -10,6 +18,7 @@
             <div class="hero-actions">
                 <a class="btn-outline" href="#contact" (click)="scrollTo($event, 'contact')">تواصل معنا</a>
                 <a class="btn-fill" href="#products" (click)="scrollTo($event, 'products')">تصفح منتجاتنا</a>
+                <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.hero, cls: 'btn-outline' }"></ng-container>
             </div>
         </div>
     </section>
@@ -30,7 +39,10 @@
                         لنواصل اليوم بناء مستقبل أقوى لقطاع التشطيبات بمنتجات مصرية بمعايير تليق بثقة عملائنا.</p>
                 </div>
 
-                <a class="btn-fill about-btn" href="#products" (click)="scrollTo($event, 'products')">تصفح منتجاتنا</a>
+                <div class="about-actions">
+                    <a class="btn-fill about-btn" href="#products" (click)="scrollTo($event, 'products')">تصفح منتجاتنا</a>
+                    <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.about, cls: 'btn-outline-dark about-btn' }"></ng-container>
+                </div>
             </div>
 
             <div class="about-image" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 250">
@@ -53,6 +65,7 @@
 
         <div class="products-more">
             <a class="btn-outline-dark" routerLink="/products">عرض كل المنتجات</a>
+            <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.products, cls: 'btn-fill' }"></ng-container>
         </div>
     </section>
 
@@ -74,6 +87,10 @@
                     <p>{{item.description}}</p>
                 </li>
             </ul>
+
+            <div class="section-cta">
+                <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.why, cls: 'btn-fill' }"></ng-container>
+            </div>
         </div>
     </section>
 
@@ -83,6 +100,10 @@
             headingId="stats-title"></app-section-heading>
 
         <app-stats></app-stats>
+
+        <div class="section-cta">
+            <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.stats, cls: 'btn-fill' }"></ng-container>
+        </div>
     </section>
 
     <!-- Sectors -->
@@ -97,6 +118,10 @@
                 <p>{{item.description}}</p>
             </li>
         </ul>
+
+        <div class="section-cta">
+            <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.sectors, cls: 'btn-fill' }"></ng-container>
+        </div>
     </section>
 
     <!-- Projects -->
@@ -120,6 +145,10 @@
                     [attr.aria-current]="pos === projectPos" [attr.aria-label]="'الشريحة ' + (pos + 1)"
                     (click)="projectPos = pos"></button>
             </div>
+
+            <div class="section-cta">
+                <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.projects, cls: 'btn-fill' }"></ng-container>
+            </div>
         </div>
     </section>
 
@@ -131,10 +160,13 @@
         <div class="catalog-content" uk-scrollspy="cls: uk-animation-scale-up; delay: 100">
             <h2 id="catalog-title">حمل كتالوج المنتجات</h2>
             <p>أكتشف كل ما تحتاجه من منتجاتنا</p>
-            <button type="button" class="catalog-btn" (click)="openCatalog()">
-                <img [src]="img + 'icons/download.svg'" alt="">
-                <span>تحميل الكتالوج</span>
-            </button>
+            <div class="catalog-actions">
+                <button type="button" class="catalog-btn" (click)="openCatalog()">
+                    <img [src]="img + 'icons/download.svg'" alt="">
+                    <span>تحميل الكتالوج</span>
+                </button>
+                <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.catalog, cls: 'btn-fill' }"></ng-container>
+            </div>
         </div>
     </section>
 
@@ -160,6 +192,10 @@
                 [class.active]="i === testimonialPos" [attr.aria-current]="i === testimonialPos"
                 [attr.aria-label]="'الشريحة ' + (i + 1)" (click)="testimonialPos = i"></button>
         </div>
+
+        <div class="section-cta">
+            <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.testimonials, cls: 'btn-fill' }"></ng-container>
+        </div>
     </section>
 
     <!-- Partners -->
@@ -173,6 +209,10 @@
                 <li *ngFor="let item of partnerArr" aria-hidden="true"><img [src]="item.image" alt=""
                         loading="lazy"></li>
             </ul>
+        </div>
+
+        <div class="section-cta">
+            <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.partners, cls: 'btn-fill' }"></ng-container>
         </div>
     </section>
 
@@ -287,6 +327,10 @@
                     </li>
                 </ul>
             </div>
+        </div>
+
+        <div class="section-cta">
+            <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.faq, cls: 'btn-fill' }"></ng-container>
         </div>
     </section>
 
