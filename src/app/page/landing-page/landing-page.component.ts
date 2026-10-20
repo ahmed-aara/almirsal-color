@@ -123,6 +123,21 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     { icon: IMG + 'icons/whatsapp.svg', name: 'WhatsApp', url: `https://wa.me/+2${this.service.phoneNumber}` },
   ]
 
+  // WhatsApp call to action for each section: button label and the message pre-filled in the chat
+  ctaArr: any = Object.entries({
+    hero: { label: 'اطلب عرض سعر', type: 'HeroQuote', message: 'مرحباً، أريد عرض سعر لمنتجات المرسال كلر.' },
+    about: { label: 'تحدث معنا', type: 'AboutUs', message: 'مرحباً، أريد معرفة المزيد عن المرسال كلر ومنتجاتكم.' },
+    products: { label: 'اسأل عن الأسعار', type: 'ProductPrices', message: 'مرحباً، أريد الاستفسار عن أسعار وتوفر منتجاتكم.' },
+    why: { label: 'اطلب استشارة', type: 'Consultation', message: 'مرحباً، أريد استشارة لاختيار المنتج المناسب لمشروعي.' },
+    stats: { label: 'ابدأ التعامل معنا', type: 'NewCustomer', message: 'مرحباً، أريد أن أبدأ التعامل مع المرسال كلر.' },
+    sectors: { label: 'اطلب عرض سعر لمشروعك', type: 'ProjectQuote', message: 'مرحباً، أريد عرض سعر خاص لمشروعي.' },
+    projects: { label: 'ابدأ مشروعك معنا', type: 'StartProject', message: 'مرحباً، شاهدت مشروعاتكم وأريد تنفيذ مشروعي بمنتجات المرسال كلر.' },
+    catalog: { label: 'اطلب الكتالوج على واتساب', type: 'Catalog', message: 'مرحباً، أريد الحصول على كتالوج المنتجات والأسعار.' },
+    testimonials: { label: 'شاركنا تجربتك', type: 'Feedback', message: 'مرحباً، أريد مشاركة تجربتي مع منتجات المرسال كلر.' },
+    partners: { label: 'كن شريكاً لنا', type: 'Partnership', message: 'مرحباً، أريد مناقشة فرص الشراكة والتوزيع مع المرسال كلر.' },
+    faq: { label: 'لديك سؤال آخر؟', type: 'Question', message: 'مرحباً، لدي سؤال لم أجد إجابته في الأسئلة الشائعة:' },
+  }).reduce((arr, [section, cta]) => ({ ...arr, [section]: { label: cta.label, href: this.service.whatsAppLink(cta.message, cta.type) } }), {})
+
   catalogPages = Array.from({ length: 11 }, (_, i) => `assets/img/document/${i + 1}.png`)
 
   //variable

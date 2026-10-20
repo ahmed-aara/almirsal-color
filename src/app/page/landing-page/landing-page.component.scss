@@ -54,6 +54,37 @@ section {
     }
 }
 
+// WhatsApp call to action; colours come from the button class it is paired with
+.wa-cta {
+    gap: 10px;
+    height: fl(56, 46);
+    min-width: 0;
+    padding-inline: fl(32, 22);
+    font-size: fs(23, 16);
+
+    img {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+    }
+
+    // The icon is dark; make it white on orange and white-outline buttons
+    &.btn-fill img,
+    &.btn-outline img,
+    &.btn-outline-dark:hover img,
+    &.btn-outline-dark:focus-visible img {
+        filter: brightness(0) invert(1);
+    }
+}
+
+// Centred call to action at the end of a section
+.section-cta {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: fl(48, 32);
+}
+
 .btn-small {
     height: fl(38, 36);
     min-width: 0;
@@ -128,6 +159,13 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+
+    // Same size as the other hero buttons
+    .wa-cta {
+        height: fl(60, 46);
+        min-width: fl(240, 140);
+        font-size: fs(25, 16);
+    }
 }
 
 /*
@@ -171,10 +209,16 @@ section {
     }
 }
 
+.about-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: fl(39, 28);
+}
+
 .about-btn {
     height: fl(48, 44);
     min-width: 0;
-    margin-top: fl(39, 28);
     padding-inline: fl(33, 24);
     font-size: fs(23, 16);
 }
@@ -204,7 +248,9 @@ section {
 
 .products-more {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 12px;
     margin-top: fl(48, 32);
 }
 
@@ -496,6 +542,7 @@ section {
         width: 100%;
         aspect-ratio: 442 / 332;
         margin-top: calc(var(--card) * -.063);
+        margin-bottom: calc(var(--card) * .04);
         border-radius: 11px;
         object-fit: cover;
         box-shadow: 2px 8px 10.4px 7px rgba(98, 98, 98, .25);
@@ -554,11 +601,23 @@ section {
     }
 }
 
+.catalog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: fl(17, 16);
+
+    .wa-cta {
+        height: fl(52, 46);
+        font-size: fs(21.28, 16);
+    }
+}
+
 .catalog-btn {
     @include pill-button(#fff, $orange);
     gap: 9px;
     height: fl(52, 46);
-    margin-top: fl(17, 16);
     padding-inline: fl(43, 28);
     font-size: fs(21.28, 16);
 

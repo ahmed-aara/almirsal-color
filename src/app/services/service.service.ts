@@ -19,6 +19,11 @@ export class ServiceService {
     return this.http.get(this.url_product);
   }
 
+  // WhatsApp chat with the sales number, pre-filled with message. type tags the request in the link.
+  whatsAppLink(message: string, type: string) {
+    return `https://api.whatsapp.com/send/?phone=+2${this.phoneNumber}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0&type_of_request=${type}`
+  }
+
   getProject(): Observable<any> {
     return this.http.get(this.url_project);
   }
