@@ -33,12 +33,8 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     { icon: IMG + 'Group 4653.svg', title: 'الأفراد', description: 'منتجات وحلول تشطيب تساعدك على اختيار الأنسب لمشروعك ومنزلك.' },
   ]
 
-  projectArr = [
-    { image: IMG + 'a1f6b083-5f88-48a6-8f58-1c40c3ea0712.png', title: 'مشروع 1' },
-    { image: IMG + 'f58d837e-c500-4b00-9608-f68ff787b2dc.png', title: 'مشروع 2' },
-    { image: IMG + '8e06486f-681d-4204-bcf9-ddcd6e99cb96.png', title: 'مشروع 3' },
-    { image: IMG + 'be066fbb-c9c4-4fd8-8e5f-a5c7b4401b1a.png', title: 'مشروع 4' },
-  ]
+  // Loaded from assets/json/project.json, in the order listed there
+  projectArr: any = []
 
   // TODO: replace with real customer reviews; text is the placeholder copy from the Figma design
   testimonialArr = [1, 2, 3].map(() => ({
@@ -157,6 +153,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProduct()
+    this.getProject()
     this.setWide(this.wideQuery.matches)
     this.wideQuery.addEventListener('change', this.onWideChange)
   }
@@ -191,6 +188,22 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   toggleFaq(index: number) {
     this.openFaq = this.openFaq === index ? -1 : index;
+  }
+
+  getProject() {
+    this.service.getProject().subscribe(
+      response => {
+        this.projectArr = response
+        this.setWide(this.isWide)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
+  trackById(index: number, item: any) {
+    return item.id
   }
 
   /*

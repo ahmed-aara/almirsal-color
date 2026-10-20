@@ -448,8 +448,16 @@ section {
         padding: fl(102, 56) 0 0;
     }
 
+    // One dot per project: wrap on narrow phones rather than squashing them
     .dots {
+        flex-wrap: wrap;
+        row-gap: 12px;
         margin-top: fl(60, 32);
+        padding-inline: 16px;
+
+        button {
+            flex-shrink: 0;
+        }
     }
 }
 
@@ -489,6 +497,13 @@ section {
         font-size: fs(20, 15);
         line-height: 1.36;
         color: $navy-ink !important;
+    }
+
+    .project-meta {
+        max-width: none;
+        margin-top: 4px !important;
+        font-size: fs(16, 13);
+        color: $text-gray !important;
     }
 }
 
