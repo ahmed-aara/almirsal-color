@@ -16,7 +16,6 @@
         <div class="hero-content" uk-scrollspy="cls: uk-animation-slide-bottom-medium; target: > *; delay: 250">
             <h1 id="hero-title">المرسال كلر<br>اختيار يبني مستقبل</h1>
             <div class="hero-actions">
-                <a class="btn-outline" href="#contact" (click)="scrollTo($event, 'contact')">تواصل معنا</a>
                 <a class="btn-fill" href="#products" (click)="scrollTo($event, 'products')">تصفح منتجاتنا</a>
                 <ng-container *ngTemplateOutlet="waCta; context: { $implicit: ctaArr.hero, cls: 'btn-outline' }"></ng-container>
             </div>
