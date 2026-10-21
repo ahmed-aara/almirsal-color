@@ -1,0 +1,17 @@
+<!-- Kept while loading so links to #products can find it; dropped if nothing is left to show -->
+<section *ngIf="!loaded_ || visibleProducts.length" class="products" id="products" [attr.aria-labelledby]="headingId">
+    <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="منتجاتنا" [title]="heading"
+        [headingId]="headingId"></app-section-heading>
+
+    <ul class="product-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
+        <li *ngFor="let item of visibleProducts">
+            <app-product-card [product]="item"></app-product-card>
+        </li>
+    </ul>
+
+    <div class="products-more">
+        <a class="btn-outline-dark" routerLink="/products">عرض كل المنتجات</a>
+        <app-wa-cta label="اسأل عن الأسعار" type="ProductPrices"
+            message="مرحباً، أريد الاستفسار عن أسعار وتوفر منتجاتكم."></app-wa-cta>
+    </div>
+</section>

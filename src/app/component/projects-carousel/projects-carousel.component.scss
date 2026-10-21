@@ -1,0 +1,95 @@
+@use '../../page/landing-page/sections' as *;
+
+@include section-host;
+@include section-cta;
+@include carousel;
+
+.projects {
+    padding: fl(111, 48) $gutter fl(110, 56);
+}
+
+.projects-panel {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: fl(67, 40) 0 fl(57, 32);
+    border-radius: fl(29, 16);
+    background: $navy-ink;
+    box-shadow: 18px 18px 13px #d6d6d6;
+
+    // Cards run past the panel to the viewport edges
+    .carousel {
+        width: 100vw;
+        margin: 0 calc(50% - 50vw);
+        // 102px to the card top; the photo overhangs the card by 32px
+        padding: fl(102, 56) 0 0;
+    }
+
+    // One dot per project: wrap on narrow phones rather than squashing them
+    .dots {
+        flex-wrap: wrap;
+        row-gap: 12px;
+        margin-top: fl(60, 32);
+        padding-inline: 16px;
+
+        button {
+            flex-shrink: 0;
+        }
+
+        // Smaller dots keep all twelve on one row down to 320px
+        @media (max-width: $bp-s - 1) {
+            gap: 8px;
+
+            button {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+}
+
+.project-track {
+    --card: min(#{fl(508, 280)}, calc(100vw - 64px));
+    --gap: #{fl(20, 12)};
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 508 / 372;
+    // Card-relative (percentages would resolve against the whole track)
+    padding: 0 calc(var(--card) * .065) calc(var(--card) * .037);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 5px 11px 38.5px rgba(204, 204, 204, .25);
+    transition: transform .3s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+    }
+
+    img {
+        flex-shrink: 0;
+        width: 100%;
+        aspect-ratio: 442 / 332;
+        margin-top: calc(var(--card) * -.063);
+        margin-bottom: calc(var(--card) * .04);
+        border-radius: 11px;
+        object-fit: cover;
+        box-shadow: 2px 8px 10.4px 7px rgba(98, 98, 98, .25);
+    }
+
+    h3 {
+        @include font(700);
+        margin-top: auto !important;
+        font-size: fs(20, 15);
+        line-height: 1.36;
+        color: $navy-ink !important;
+    }
+
+    .project-meta {
+        max-width: none;
+        margin-top: 4px !important;
+        font-size: fs(16, 13);
+        color: $text-gray !important;
+    }
+}

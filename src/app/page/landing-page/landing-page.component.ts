@@ -1,58 +1,23 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ServiceService } from 'src/app/services/service.service';
+import { Component } from '@angular/core';
+import { IMG } from './landing-assets';
 
 declare const UIkit: any;
-
-const IMG = 'assets/img/new-landing-page/';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit, OnDestroy {
+export class LandingPageComponent {
 
   img = IMG
 
   //Array
-  // Product ids from assets/json/product.json, in the order shown in the design (right to left)
-  featuredProductIds = ['015', '006', '007', '008']
-  productArr: any = []
-
-  featureArr = [
-    { icon: IMG + 'delivery-svgrepo-com 3.svg', title: 'الجودة', description: 'نلتزم بتقديم منتجات بمستوى جودة يواكب متطلبات أعمال التشطيب المختلفة.' },
-    { icon: IMG + 'delivery-svgrepo-com 2.svg', title: 'التوفير', description: 'أسعار تنافسية تمنحك قيمة أفضل مقابل ما تدفعه، وتساعدك على التحكم في تكلفة مشروعك.' },
-    { icon: IMG + 'icons/truck.svg', title: 'سرعة التوصيل', description: 'نلتزم بسرعة التوريد لتصلك منتجاتك في الوقت المناسب وتستمر أعمالك بدون تعطيل.' },
-  ]
-
   sectorArr = [
     { icon: IMG + 'user-svgrepo-com 4.svg', title: 'المطورون العقاريون', description: 'حلول ومنتجات تساعدك على تنفيذ مشروعاتك بكفاءة وعلى نطاق واسع.' },
     { icon: IMG + 'user-svgrepo-com 3.svg', title: 'شركات المقاولات', description: 'منتجات موثوقة وتوريد يساعدك على الحفاظ على سير العمل في مواعيده.' },
     { icon: IMG + 'user-svgrepo-com 2.svg', title: 'تجار مواد البناء', description: 'مجموعة متنوعة من المنتجات وفرص شراكة وتوزيع تناسب احتياجات السوق.' },
     { icon: IMG + 'Group 4653.svg', title: 'الأفراد', description: 'منتجات وحلول تشطيب تساعدك على اختيار الأنسب لمشروعك ومنزلك.' },
-  ]
-
-  // Loaded from assets/json/project.json, in the order listed there
-  projectArr: any = []
-
-  // TODO: replace with real customer reviews; text is the placeholder copy from the Figma design
-  testimonialArr = [1, 2, 3].map(() => ({
-    rating: 5,
-    text: 'هو ببساطة نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة',
-    name: 'احمد محمد',
-  }))
-
-  partnerArr = [
-    { image: IMG + 'Group 529.png', name: 'Egyptian Engineering Company' },
-    { image: IMG + 'cf8b3f96-ddd7-4301-995d-2d5da08b9577.png', name: 'Haibacon for construction' },
-    { image: IMG + '404a96d2-a13c-480c-966e-c903131afa3c.png', name: 'المتحدة' },
-    { image: IMG + '24dfa04d-16fd-4fff-ab2e-f9d166e614a9.png', name: 'البروج للإنشاء والتعمير' },
-    { image: IMG + '4e38141f-3c5c-4ea3-ac00-2b165d32941f.png', name: 'دجلة تاورز' },
-    { image: IMG + '1.png', name: 'NBIG Developments' },
-    { image: IMG + 'برو-تاتش-لوجو-كبير.png', name: 'Pro Touch' },
-    { image: IMG + 'logo9 1.png', name: 'Cairo Capital' },
-    { image: IMG + '6f79adb8-cf51-4e99-9791-cb2edc07c7d5.png', name: 'El-Sehami Construction' },
   ]
 
   // "points" are shown as a list under the answer. "index" is unique across groups (used to open/close).
@@ -107,88 +72,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     return [...groups, { ...group, items: group.items.map((item: any, i) => ({ ...item, index: start + i })) }]
   }, [])
 
-  contactInfoArr = [
-    { icon: IMG + 'icons/email.svg', title: 'البريد الإلكتروني', lines: ['info@almersalcolour.com'], href: 'mailto:info@almersalcolour.com' },
-    { icon: IMG + 'icons/phone.svg', title: 'الهاتف', lines: ['01033545417', '01124722618'], href: 'tel:+201033545417' },
-    { icon: IMG + 'icons/location.svg', title: 'الموقع', lines: ['اداره المبيعات: مدينه العبور محافظة القليوبيه'], href: '' },
-  ]
-
-  // Order matches the design (right to left). Icons without a known account URL are not rendered.
-  socialArr = [
-    { icon: IMG + 'icons/twitter.svg', name: 'X (Twitter)', url: '' },
-    { icon: IMG + 'icons/tiktok.svg', name: 'TikTok', url: '' },
-    { icon: IMG + 'icons/linkedin.svg', name: 'LinkedIn', url: '' },
-    { icon: IMG + 'icons/snapchat.svg', name: 'Snapchat', url: '' },
-    { icon: IMG + 'icons/instagram.svg', name: 'Instagram', url: '' },
-    { icon: IMG + 'icons/whatsapp.svg', name: 'WhatsApp', url: `https://wa.me/+2${this.service.phoneNumber}` },
-  ]
-
-  // WhatsApp call to action for each section: button label and the message pre-filled in the chat
-  ctaArr: any = Object.entries({
-    hero: { label: 'اطلب عرض سعر', type: 'HeroQuote', message: 'مرحباً، أريد عرض سعر لمنتجات المرسال كلر.' },
-    about: { label: 'تحدث معنا', type: 'AboutUs', message: 'مرحباً، أريد معرفة المزيد عن المرسال كلر ومنتجاتكم.' },
-    products: { label: 'اسأل عن الأسعار', type: 'ProductPrices', message: 'مرحباً، أريد الاستفسار عن أسعار وتوفر منتجاتكم.' },
-    why: { label: 'اطلب استشارة', type: 'Consultation', message: 'مرحباً، أريد استشارة لاختيار المنتج المناسب لمشروعي.' },
-    stats: { label: 'ابدأ التعامل معنا', type: 'NewCustomer', message: 'مرحباً، أريد أن أبدأ التعامل مع المرسال كلر.' },
-    sectors: { label: 'اطلب عرض سعر لمشروعك', type: 'ProjectQuote', message: 'مرحباً، أريد عرض سعر خاص لمشروعي.' },
-    projects: { label: 'ابدأ مشروعك معنا', type: 'StartProject', message: 'مرحباً، شاهدت مشروعاتكم وأريد تنفيذ مشروعي بمنتجات المرسال كلر.' },
-    catalog: { label: 'اطلب الكتالوج على واتساب', type: 'Catalog', message: 'مرحباً، أريد الحصول على كتالوج المنتجات والأسعار.' },
-    testimonials: { label: 'شاركنا تجربتك', type: 'Feedback', message: 'مرحباً، أريد مشاركة تجربتي مع منتجات المرسال كلر.' },
-    partners: { label: 'كن شريكاً لنا', type: 'Partnership', message: 'مرحباً، أريد مناقشة فرص الشراكة والتوزيع مع المرسال كلر.' },
-    faq: { label: 'لديك سؤال آخر؟', type: 'Question', message: 'مرحباً، لدي سؤال لم أجد إجابته في الأسئلة الشائعة:' },
-  }).reduce((arr, [section, cta]) => ({ ...arr, [section]: { label: cta.label, href: this.service.whatsAppLink(cta.message, cta.type) } }), {})
-
   catalogPages = Array.from({ length: 11 }, (_, i) => `assets/img/document/${i + 1}.png`)
 
   //variable
   openFaq = 0
-  isWide = false
-  projectPos = 0
-  testimonialPos = 1
-  mapUrl: SafeResourceUrl
-  error_msg = ''
-
-  //Data
-  messageData: any = {
-    firstName: null,
-    lastName: null,
-    phone: null,
-    email: null,
-    message: null,
-  }
-
-  private wideQuery = window.matchMedia('(min-width: 960px)')
-  private onWideChange = () => this.zone.run(() => this.setWide(this.wideQuery.matches))
-  private touchStartX: number | null = null
-
-  constructor(private service: ServiceService, private sanitizer: DomSanitizer, private zone: NgZone) {
-    const query = encodeURIComponent('مصنع المرسال كلر للدهانات والبويات الحديثة، سبين، الغربية');
-    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://maps.google.com/maps?q=${query}&z=16&output=embed`);
-  }
-
-  ngOnInit(): void {
-    this.getProduct()
-    this.getProject()
-    this.setWide(this.wideQuery.matches)
-    this.wideQuery.addEventListener('change', this.onWideChange)
-  }
-
-  ngOnDestroy(): void {
-    this.wideQuery.removeEventListener('change', this.onWideChange)
-  }
-
-  getProduct() {
-    this.service.getProduct().subscribe(
-      response => {
-        this.productArr = this.featuredProductIds
-          .map(id => response.find((item: any) => item.id === id))
-          .filter(Boolean)
-      },
-      err => {
-        console.log(err)
-      }
-    )
-  }
 
   scrollTo(event: Event, id: string) {
     event.preventDefault();
@@ -203,83 +90,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   toggleFaq(index: number) {
     this.openFaq = this.openFaq === index ? -1 : index;
-  }
-
-  getProject() {
-    this.service.getProject().subscribe(
-      response => {
-        this.projectArr = response
-        this.setWide(this.isWide)
-      },
-      err => {
-        console.log(err)
-      }
-    )
-  }
-
-  trackById(index: number, item: any) {
-    return item.id
-  }
-
-  /*
-  * Carousels
-  * A position is the slide index centred in the viewport. On wide screens the
-  * projects carousel centres the gap between two cards, as in the design.
-  ********/
-  setWide(wide: boolean) {
-    this.isWide = wide;
-    this.projectPos = Math.floor((this.projectPositions.length - 1) / 2);
-  }
-
-  get projectPositions(): number[] {
-    const count = this.isWide ? this.projectArr.length - 1 : this.projectArr.length;
-    return Array.from({ length: Math.max(count, 1) }, (_, i) => i);
-  }
-
-  get projectOffset(): number {
-    const center = this.isWide ? this.projectPos + 0.5 : this.projectPos;
-    return center - (this.projectArr.length - 1) / 2;
-  }
-
-  get testimonialOffset(): number {
-    return this.testimonialPos - (this.testimonialArr.length - 1) / 2;
-  }
-
-  onTouchStart(event: TouchEvent) {
-    this.touchStartX = event.changedTouches[0].clientX;
-  }
-
-  onTouchEnd(event: TouchEvent, carousel: 'project' | 'testimonial') {
-    if (this.touchStartX === null) return;
-    const delta = event.changedTouches[0].clientX - this.touchStartX;
-    this.touchStartX = null;
-    if (Math.abs(delta) < 40) return;
-
-    // RTL: swiping left reveals the next slide
-    const step = delta < 0 ? 1 : -1;
-    if (carousel === 'project') {
-      this.projectPos = this.clamp(this.projectPos + step, this.projectPositions.length);
-    } else {
-      this.testimonialPos = this.clamp(this.testimonialPos + step, this.testimonialArr.length);
-    }
-  }
-
-  private clamp(pos: number, count: number) {
-    return Math.min(Math.max(pos, 0), count - 1);
-  }
-
-  sendMessage() {
-    this.error_msg = '';
-    const { firstName, lastName, phone, email, message } = this.messageData;
-
-    if (!firstName || !lastName || !phone || !email || !message) {
-      this.error_msg = 'يجب استكمال البيانات';
-      return;
-    }
-
-    let text = `الاسم: ${firstName} ${lastName}\nالهاتف: +20${phone}\nالبريد الإلكتروني: ${email}\nالرسالة: ${message}\nأريد التواصل معك`
-    let Link = `https://api.whatsapp.com/send/?phone=+2${this.service.phoneNumber}&text=${encodeURIComponent(text)}&type=phone_number&app_absent=0&type_of_request=ContactUs`
-    window.open(Link, '_blank');
   }
 
 }

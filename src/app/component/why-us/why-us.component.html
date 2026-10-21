@@ -1,0 +1,24 @@
+<section class="why" aria-labelledby="why-title">
+    <img class="why-bg" [src]="img + 'pexels-laura-tancredi-7078055 2.png'" alt="" loading="lazy">
+    <div class="why-overlay"></div>
+
+    <div class="why-inner">
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="لماذا المرسال كلر؟" title="لماذا تختار منتجاتنا؟" headingId="why-title"
+            [light]="true">
+            <p class="why-subtitle">لأن الجودة وحدها لا تكفي... المهم أن تجدها في كل مرة.</p>
+        </app-section-heading>
+
+        <ul class="why-grid" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 150">
+            <li *ngFor="let item of featureArr" class="why-item">
+                <img [src]="item.icon" alt="">
+                <h3>{{item.title}}</h3>
+                <p>{{item.description}}</p>
+            </li>
+        </ul>
+
+        <div class="section-cta">
+            <app-wa-cta label="اطلب استشارة" type="Consultation"
+                message="مرحباً، أريد استشارة لاختيار المنتج المناسب لمشروعي."></app-wa-cta>
+        </div>
+    </div>
+</section>

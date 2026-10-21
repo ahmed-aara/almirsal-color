@@ -1,0 +1,8 @@
+@use '../../page/landing-page/sections' as *;
+
+@include section-host;
+@include section-cta;
+
+.stats {
+    @include section-block;
+}

@@ -1,0 +1,62 @@
+@use '../../page/landing-page/sections' as *;
+
+@include section-host;
+@include section-cta;
+
+.partners {
+    padding: fl(99, 56) 0 fl(120, 56);
+    background: $bg-warm;
+
+    app-section-heading {
+        display: block;
+        padding-inline: $gutter;
+    }
+}
+
+.marquee {
+    margin-top: fl(70, 32);
+    overflow: hidden;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+
+    li {
+        flex-shrink: 0;
+        margin-inline-end: fl(79, 24);
+    }
+
+    img {
+        width: fl(161, 112);
+        height: fl(161, 112);
+        border-radius: 10.7px;
+        object-fit: cover;
+    }
+}
+
+// RTL track: shift right by one full set of logos, then loop
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee {
+        overflow-x: auto;
+    }
+
+    .marquee-track {
+        animation: none;
+    }
+}

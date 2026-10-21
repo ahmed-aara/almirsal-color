@@ -1,0 +1,17 @@
+<section class="partners" aria-labelledby="partners-title">
+    <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="شركاء النجاح" title="نفخر بشركائنا"
+        headingId="partners-title"></app-section-heading>
+
+    <div class="marquee" uk-scrollspy="cls: uk-animation-fade; delay: 150">
+        <ul class="marquee-track">
+            <li *ngFor="let item of partnerArr"><img [src]="item.image" [alt]="item.name" loading="lazy"></li>
+            <li *ngFor="let item of partnerArr" aria-hidden="true"><img [src]="item.image" alt=""
+                    loading="lazy"></li>
+        </ul>
+    </div>
+
+    <div class="section-cta">
+        <app-wa-cta label="كن شريكاً لنا" type="Partnership"
+            message="مرحباً، أريد مناقشة فرص الشراكة والتوزيع مع المرسال كلر."></app-wa-cta>
+    </div>
+</section>
