@@ -26,6 +26,20 @@
     color: $orange;
 }
 
+.lined .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: fl(20, 12);
+
+    &::before {
+        content: "";
+        width: fl(46, 28);
+        height: 3px;
+        border-radius: 2px;
+        background: currentColor;
+    }
+}
+
 .title {
     @include font(700);
     font-size: fs(40, 24);

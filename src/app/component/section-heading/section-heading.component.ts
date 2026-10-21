@@ -12,5 +12,7 @@ export class SectionHeadingComponent {
   @Input() headingId = ''
   @Input() light = false
   @Input() align: 'center' | 'start' = 'center'
+  // Short orange rule before the eyebrow
+  @Input() lined = false
 
 }
