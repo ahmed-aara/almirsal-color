@@ -1,42 +1,37 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/services/service.service';
-import { CarouselSwipe, clampSlide } from '../carousel-swipe';
+import { CarouselSwipe } from '../carousel-swipe';
 
 @Component({
   selector: 'app-projects-carousel',
   templateUrl: './projects-carousel.component.html',
   styleUrls: ['./projects-carousel.component.scss']
 })
-export class ProjectsCarouselComponent implements OnInit, OnDestroy {
+export class ProjectsCarouselComponent implements OnInit {
 
   // Loaded from assets/json/project.json, in the order listed there
   projectArr: any = []
 
   //variable
-  isWide = false
   projectPos = 0
+  featured: any = null
+  cards: any[] = []
   swipe = new CarouselSwipe()
 
-  private wideQuery = window.matchMedia('(min-width: 960px)')
-  private onWideChange = () => this.zone.run(() => this.setWide(this.wideQuery.matches))
+  // Cards shown beside the featured project (CSS hides the last one on phones)
+  readonly cardCount = 3
 
-  constructor(private service: ServiceService, private zone: NgZone) { }
+  constructor(private service: ServiceService) { }
 
   ngOnInit(): void {
     this.getProject()
-    this.setWide(this.wideQuery.matches)
-    this.wideQuery.addEventListener('change', this.onWideChange)
-  }
-
-  ngOnDestroy(): void {
-    this.wideQuery.removeEventListener('change', this.onWideChange)
   }
 
   getProject() {
     this.service.getProject().subscribe(
       response => {
         this.projectArr = response
-        this.setWide(this.isWide)
+        this.show(0)
       },
       err => {
         console.log(err)
@@ -50,26 +45,30 @@ export class ProjectsCarouselComponent implements OnInit, OnDestroy {
 
   /*
   * Carousel
-  * A position is the slide index centred in the viewport. On wide screens the
-  * carousel centres the gap between two cards, as in the design.
+  * The project at projectPos is featured in the large photo and the next ones
+  * are shown as cards, wrapping round to the start of the list.
   ********/
-  setWide(wide: boolean) {
-    this.isWide = wide;
-    this.projectPos = Math.floor((this.projectPositions.length - 1) / 2);
+  show(pos: number) {
+    const count = this.projectArr.length;
+    if (!count) return;
+
+    this.projectPos = (pos + count) % count;
+    this.featured = this.projectArr[this.projectPos];
+    this.cards = Array.from({ length: Math.min(this.cardCount, count - 1) },
+      (_, i) => this.projectArr[(this.projectPos + i + 1) % count]);
   }
 
-  get projectPositions(): number[] {
-    const count = this.isWide ? this.projectArr.length - 1 : this.projectArr.length;
-    return Array.from({ length: Math.max(count, 1) }, (_, i) => i);
+  next() {
+    this.show(this.projectPos + 1);
   }
 
-  get projectOffset(): number {
-    const center = this.isWide ? this.projectPos + 0.5 : this.projectPos;
-    return center - (this.projectArr.length - 1) / 2;
+  prev() {
+    this.show(this.projectPos - 1);
   }
 
   onSwipe(event: TouchEvent) {
-    this.projectPos = clampSlide(this.projectPos + this.swipe.step(event), this.projectPositions.length);
+    const step = this.swipe.step(event);
+    if (step) this.show(this.projectPos + step);
   }
 
 }
