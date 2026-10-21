@@ -21,6 +21,14 @@ import { SiteFooterComponent } from './component/site-footer/site-footer.compone
 import { StatsComponent } from './component/stats/stats.component';
 import { CoverageCalculatorComponent } from './component/coverage-calculator/coverage-calculator.component';
 import { ProductsComponent } from './page/products/products.component';
+import { WaCtaComponent } from './component/wa-cta/wa-cta.component';
+import { WhyUsComponent } from './component/why-us/why-us.component';
+import { FeaturedProductsComponent } from './component/featured-products/featured-products.component';
+import { StatsSectionComponent } from './component/stats-section/stats-section.component';
+import { ProjectsCarouselComponent } from './component/projects-carousel/projects-carousel.component';
+import { TestimonialsComponent } from './component/testimonials/testimonials.component';
+import { PartnersComponent } from './component/partners/partners.component';
+import { ContactSectionComponent } from './component/contact-section/contact-section.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +45,15 @@ import { ProductsComponent } from './page/products/products.component';
     SiteFooterComponent,
     StatsComponent,
     CoverageCalculatorComponent,
-    ProductsComponent
+    ProductsComponent,
+    WaCtaComponent,
+    WhyUsComponent,
+    FeaturedProductsComponent,
+    StatsSectionComponent,
+    ProjectsCarouselComponent,
+    TestimonialsComponent,
+    PartnersComponent,
+    ContactSectionComponent
   ],
   imports: [
     BrowserModule,

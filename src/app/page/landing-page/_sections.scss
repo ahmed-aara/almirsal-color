@@ -1,0 +1,101 @@
+// Shared by the home-page sections that live in their own components
+// (they are also shown on the product page).
+@forward 'tokens';
+@use 'tokens' as *;
+
+// Resets the landing page applies to everything inside it
+@mixin section-host {
+    :host {
+        display: block;
+    }
+
+    :host *,
+    :host *::before,
+    :host *::after {
+        box-sizing: border-box;
+    }
+
+    section {
+        position: relative;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    img {
+        display: block;
+        max-width: none;
+    }
+}
+
+// Section padding used by most sections (99px in the design)
+@mixin section-block {
+    padding: fl(99, 56) $gutter;
+}
+
+// Centred call to action at the end of a section
+@mixin section-cta {
+    .section-cta {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-top: fl(48, 32);
+    }
+}
+
+// Carousels (projects, testimonials): a track slid by --offset cards, with dots underneath
+@mixin carousel {
+    .carousel {
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-track {
+        --offset: 0;
+        display: flex;
+        flex-shrink: 0;
+        gap: var(--gap);
+        transform: translateX(calc(var(--offset) * (var(--card) + var(--gap))));
+        transition: transform .5s ease;
+
+        // An explicit width keeps the track's intrinsic size right; Chrome ignores flex-basis there
+        >li {
+            flex: 0 0 var(--card);
+            width: var(--card);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .carousel-track {
+            transition: none;
+        }
+    }
+
+    .dots {
+        display: flex;
+        justify-content: center;
+        gap: fl(21, 14);
+
+        button {
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            border-radius: 50%;
+            background: $divider;
+            cursor: pointer;
+            transition: background-color .2s ease;
+
+            &.active {
+                background: $orange;
+            }
+
+            &:focus-visible {
+                outline: 2px solid $orange;
+                outline-offset: 3px;
+            }
+        }
+    }
+}

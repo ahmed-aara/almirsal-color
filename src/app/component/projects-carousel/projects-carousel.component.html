@@ -1,0 +1,27 @@
+<section class="projects" id="projects" aria-labelledby="projects-title">
+    <div class="projects-panel">
+        <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="مشروعات وثقت بنا" title="أعمالنا تتحدث عن جودة منتجاتنا"
+            headingId="projects-title" [light]="true"></app-section-heading>
+
+        <div class="carousel" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 150" (touchstart)="swipe.start($event)" (touchend)="onSwipe($event)">
+            <ul class="carousel-track project-track" [style.--offset]="projectOffset">
+                <li *ngFor="let item of projectArr; trackBy: trackById" class="project-card">
+                    <img [src]="'assets/img/projects/' + item.img" [alt]="item.name" loading="lazy">
+                    <h3>{{item.name}}</h3>
+                    <p class="project-meta">{{item.location}} · {{item.year}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dots" role="group" aria-label="التنقل بين المشروعات">
+            <button *ngFor="let pos of projectPositions" type="button" [class.active]="pos === projectPos"
+                [attr.aria-current]="pos === projectPos" [attr.aria-label]="'الشريحة ' + (pos + 1)"
+                (click)="projectPos = pos"></button>
+        </div>
+
+        <div class="section-cta">
+            <app-wa-cta label="ابدأ مشروعك معنا" type="StartProject"
+                message="مرحباً، شاهدت مشروعاتكم وأريد تنفيذ مشروعي بمنتجات المرسال كلر."></app-wa-cta>
+        </div>
+    </div>
+</section>

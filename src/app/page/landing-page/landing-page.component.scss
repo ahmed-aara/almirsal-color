@@ -1,4 +1,4 @@
-@use 'tokens' as *;
+@use 'sections' as *;
 
 :host {
     display: block;
@@ -40,62 +40,7 @@ section {
     font-size: fs(25, 16);
 }
 
-.btn-outline {
-    @include pill-button(transparent);
-    height: fl(60, 46);
-    min-width: fl(240, 140);
-    padding-inline: 24px;
-    border: 2px solid #fff;
-    font-size: fs(25, 16);
-
-    &:hover,
-    &:focus-visible {
-        background: rgba(255, 255, 255, .12);
-    }
-}
-
-// WhatsApp call to action; colours come from the button class it is paired with
-.wa-cta {
-    gap: 10px;
-    height: fl(56, 46);
-    min-width: 0;
-    padding-inline: fl(32, 22);
-    font-size: fs(23, 16);
-
-    img {
-        flex-shrink: 0;
-        width: 22px;
-        height: 22px;
-    }
-
-    // The icon is dark; make it white on orange and white-outline buttons
-    &.btn-fill img,
-    &.btn-outline img,
-    &.btn-outline-dark:hover img,
-    &.btn-outline-dark:focus-visible img {
-        filter: brightness(0) invert(1);
-    }
-}
-
-// Centred call to action at the end of a section
-.section-cta {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-top: fl(48, 32);
-}
-
-.btn-small {
-    height: fl(38, 36);
-    min-width: 0;
-    padding-inline: fl(19, 16);
-    font-size: fs(20, 15);
-}
-
-// Section padding used by most sections (99px in the design)
-%section-block {
-    padding: fl(99, 56) $gutter;
-}
+@include section-cta;
 
 /*
 * Hero
@@ -133,6 +78,12 @@ section {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg {
+        animation: none;
+    }
+}
+
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -161,11 +112,9 @@ section {
     gap: 10px;
 
     // Same size as the other hero buttons
-    .wa-cta {
-        height: fl(60, 46);
-        min-width: fl(240, 140);
-        font-size: fs(25, 16);
-    }
+    --wa-cta-height: #{fl(60, 46)};
+    --wa-cta-min-width: #{fl(240, 140)};
+    --wa-cta-font-size: #{fs(25, 16)};
 }
 
 /*
@@ -235,128 +184,10 @@ section {
 }
 
 /*
-* Products
-********/
-.products {
-    @extend %section-block;
-    padding-bottom: fl(98, 56);
-}
-
-.product-grid {
-    @include product-grid;
-}
-
-.products-more {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: fl(48, 32);
-}
-
-.btn-outline-dark {
-    @include pill-button(transparent, $navy);
-    height: fl(56, 46);
-    padding-inline: fl(36, 24);
-    border: 2px solid $navy;
-    font-size: fs(23, 16);
-
-    &:hover,
-    &:focus-visible {
-        background: $navy;
-        color: #fff !important;
-    }
-}
-
-/*
-* Why us
-********/
-.why {
-    @extend %section-block;
-    overflow: hidden;
-}
-
-.why-bg,
-.catalog-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.why-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(16, 39, 71, .96);
-}
-
-.why-inner {
-    position: relative;
-}
-
-.why-subtitle {
-    @include font(400);
-    margin-top: 2px !important;
-    font-size: fs(20, 15);
-    line-height: 1.36;
-    color: #fff !important;
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: 1669px;
-    margin: fl(46, 32) auto 0 !important;
-}
-
-.why-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: fl(291, 0);
-    padding: fl(36, 24) 16px fl(36, 24);
-    text-align: center;
-
-    &:nth-child(2) {
-        border-inline: 1px solid #fff;
-    }
-
-    img {
-        width: fl(60, 48);
-        height: fl(60, 48);
-    }
-
-    h3 {
-        @include font(700);
-        margin-top: fl(15, 12) !important;
-        font-size: fs(24, 18);
-        line-height: 1.36;
-        color: #fff !important;
-    }
-
-    p {
-        @include font(400);
-        max-width: 446px;
-        margin-top: fl(18, 10) !important;
-        font-size: fs(22, 15);
-        line-height: 1.36;
-        color: #d4d4d4 !important;
-    }
-}
-
-/*
-* Stats
-********/
-.stats {
-    @extend %section-block;
-}
-
-/*
 * Sectors
 ********/
 .sectors {
-    @extend %section-block;
+    @include section-block;
     background: $bg-warm;
 }
 
@@ -415,162 +246,20 @@ section {
 }
 
 /*
-* Carousels (projects, testimonials)
-********/
-.carousel {
-    display: flex;
-    justify-content: center;
-}
-
-.carousel-track {
-    --offset: 0;
-    display: flex;
-    flex-shrink: 0;
-    gap: var(--gap);
-    transform: translateX(calc(var(--offset) * (var(--card) + var(--gap))));
-    transition: transform .5s ease;
-
-    // An explicit width keeps the track's intrinsic size right; Chrome ignores flex-basis there
-    >li {
-        flex: 0 0 var(--card);
-        width: var(--card);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .carousel-track,
-    .hero-bg {
-        transition: none;
-        animation: none;
-    }
-}
-
-.dots {
-    display: flex;
-    justify-content: center;
-    gap: fl(21, 14);
-
-    button {
-        width: 15px;
-        height: 15px;
-        padding: 0;
-        border-radius: 50%;
-        background: $divider;
-        cursor: pointer;
-        transition: background-color .2s ease;
-
-        &.active {
-            background: $orange;
-        }
-
-        &:focus-visible {
-            outline: 2px solid $orange;
-            outline-offset: 3px;
-        }
-    }
-}
-
-/*
-* Projects
-********/
-.projects {
-    padding: fl(111, 48) $gutter fl(110, 56);
-}
-
-.projects-panel {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: fl(67, 40) 0 fl(57, 32);
-    border-radius: fl(29, 16);
-    background: $navy-ink;
-    box-shadow: 18px 18px 13px #d6d6d6;
-
-    // Cards run past the panel to the viewport edges
-    .carousel {
-        width: 100vw;
-        margin: 0 calc(50% - 50vw);
-        // 102px to the card top; the photo overhangs the card by 32px
-        padding: fl(102, 56) 0 0;
-    }
-
-    // One dot per project: wrap on narrow phones rather than squashing them
-    .dots {
-        flex-wrap: wrap;
-        row-gap: 12px;
-        margin-top: fl(60, 32);
-        padding-inline: 16px;
-
-        button {
-            flex-shrink: 0;
-        }
-
-        // Smaller dots keep all twelve on one row down to 320px
-        @media (max-width: $bp-s - 1) {
-            gap: 8px;
-
-            button {
-                width: 12px;
-                height: 12px;
-            }
-        }
-    }
-}
-
-.project-track {
-    --card: min(#{fl(508, 280)}, calc(100vw - 64px));
-    --gap: #{fl(20, 12)};
-}
-
-.project-card {
-    display: flex;
-    flex-direction: column;
-    aspect-ratio: 508 / 372;
-    // Card-relative (percentages would resolve against the whole track)
-    padding: 0 calc(var(--card) * .065) calc(var(--card) * .037);
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 5px 11px 38.5px rgba(204, 204, 204, .25);
-    transition: transform .3s ease;
-
-    &:hover {
-        transform: translateY(-6px);
-    }
-
-    img {
-        flex-shrink: 0;
-        width: 100%;
-        aspect-ratio: 442 / 332;
-        margin-top: calc(var(--card) * -.063);
-        margin-bottom: calc(var(--card) * .04);
-        border-radius: 11px;
-        object-fit: cover;
-        box-shadow: 2px 8px 10.4px 7px rgba(98, 98, 98, .25);
-    }
-
-    h3 {
-        @include font(700);
-        margin-top: auto !important;
-        font-size: fs(20, 15);
-        line-height: 1.36;
-        color: $navy-ink !important;
-    }
-
-    .project-meta {
-        max-width: none;
-        margin-top: 4px !important;
-        font-size: fs(16, 13);
-        color: $text-gray !important;
-    }
-}
-
-/*
 * Catalog
 ********/
 .catalog {
     padding: fl(91, 56) $gutter;
     overflow: hidden;
     text-align: center;
+}
+
+.catalog-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .catalog-overlay {
@@ -607,11 +296,8 @@ section {
     justify-content: center;
     gap: 12px;
     margin-top: fl(17, 16);
-
-    .wa-cta {
-        height: fl(52, 46);
-        font-size: fs(21.28, 16);
-    }
+    --wa-cta-height: #{fl(52, 46)};
+    --wa-cta-font-size: #{fs(21.28, 16)};
 }
 
 .catalog-btn {
@@ -628,358 +314,10 @@ section {
 }
 
 /*
-* Testimonials
-********/
-.testimonials {
-    @extend %section-block;
-
-    .carousel {
-        margin-top: fl(58, 32);
-    }
-
-    .dots {
-        margin-top: fl(55, 32);
-    }
-}
-
-.testimonial-track {
-    --card: min(#{fl(500, 280)}, calc(100vw - 48px));
-    --gap: #{fl(20, 12)};
-}
-
-.testimonial {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: fl(345, 0);
-    padding: fl(42, 28) fl(27, 20);
-    border-radius: 5px;
-    background: #fff;
-    text-align: center;
-
-    p {
-        @include font(400);
-        max-width: 446px;
-        margin-top: fl(28, 20) !important;
-        font-size: fs(22, 15);
-        line-height: 1.36;
-        color: #868686 !important;
-    }
-
-    h3 {
-        @include font(700);
-        margin-top: fl(21, 16) !important;
-        font-size: fs(26, 18);
-        line-height: 1.36;
-        color: $navy-ink !important;
-    }
-}
-
-.stars {
-    display: flex;
-    gap: fl(16, 8);
-
-    img {
-        width: fl(27, 20);
-        height: fl(27, 20);
-    }
-}
-
-/*
-* Partners
-********/
-.partners {
-    padding: fl(99, 56) 0 fl(120, 56);
-    background: $bg-warm;
-
-    app-section-heading {
-        display: block;
-        padding-inline: $gutter;
-    }
-}
-
-.marquee {
-    margin-top: fl(70, 32);
-    overflow: hidden;
-}
-
-.marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 40s linear infinite;
-
-    &:hover {
-        animation-play-state: paused;
-    }
-
-    li {
-        flex-shrink: 0;
-        margin-inline-end: fl(79, 24);
-    }
-
-    img {
-        width: fl(161, 112);
-        height: fl(161, 112);
-        border-radius: 10.7px;
-        object-fit: cover;
-    }
-}
-
-// RTL track: shift right by one full set of logos, then loop
-@keyframes marquee {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(50%);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .marquee {
-        overflow-x: auto;
-    }
-
-    .marquee-track {
-        animation: none;
-    }
-}
-
-/*
-* Contact
-********/
-.contact {
-    padding: fl(78, 56) $gutter fl(77, 56);
-    background: #f9f9f9;
-}
-
-.contact-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
-    max-width: 1682px;
-    margin: 0 auto;
-}
-
-.contact-side {
-    flex: 0 1 789px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 0;
-}
-
-.map {
-    display: block;
-    width: 100%;
-    aspect-ratio: 789 / 592;
-    border: 0;
-    border-radius: 10px;
-}
-
-.contact-info {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 254px));
-    justify-content: center;
-    gap: 13px;
-    width: 100%;
-    margin-top: fl(48, 32) !important;
-
-    li {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    img {
-        width: fl(48, 40);
-        height: fl(48, 40);
-    }
-
-    h3 {
-        @include font(700);
-        margin-top: 11px !important;
-        font-size: fs(18, 16);
-        line-height: 1.12;
-        color: $text-dark !important;
-    }
-
-    a,
-    p {
-        @include font(400);
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px !important;
-        font-size: 15px;
-        line-height: 1.12;
-        color: $text-muted !important;
-        text-decoration: none !important;
-        overflow-wrap: anywhere;
-    }
-
-    a:hover {
-        color: $orange !important;
-    }
-}
-
-.social {
-    display: flex;
-    justify-content: center;
-    gap: 19px;
-    margin-top: fl(54, 32) !important;
-
-    a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        margin: -6px !important;
-    }
-
-    img {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-.contact-form {
-    flex: 0 1 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    min-width: 0;
-}
-
-.form-heading {
-    margin-bottom: fl(47, 20);
-
-    h2 {
-        @include font(700);
-        font-size: fs(30, 22);
-        line-height: 1.12;
-        color: $navy !important;
-    }
-
-    p {
-        @include font(400);
-        margin-top: fl(15, 8) !important;
-        font-size: fs(25, 16);
-        line-height: 1.12;
-        color: $text-muted !important;
-    }
-}
-
-.field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    min-width: 0;
-
-    label {
-        @include font(400);
-        font-size: fs(19, 15);
-        line-height: 1.12;
-        color: $text-dark;
-    }
-
-    .req {
-        color: #e74c3c;
-    }
-
-    input,
-    textarea {
-        @include font(400);
-        width: 100%;
-        height: 48px;
-        padding: 0 12px;
-        border: 1px solid $text-muted;
-        border-radius: 7px;
-        background: transparent;
-        font-size: 16px;
-        color: $text-dark;
-        outline: none;
-        box-sizing: border-box;
-
-        &:focus {
-            border-color: $orange;
-        }
-    }
-
-    textarea {
-        height: 131px;
-        padding: 12px;
-        resize: vertical;
-    }
-}
-
-.phone-input {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    border: 1px solid $text-muted;
-    border-radius: 7px;
-
-    &:focus-within {
-        border-color: $orange;
-    }
-
-    input {
-        flex: 1;
-        height: 100%;
-        border: 0 !important;
-        padding-inline: 8px 12px;
-    }
-}
-
-.phone-prefix {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    padding-inline-start: 7px;
-    font-size: 16px;
-    color: $text-dark;
-
-    .flag {
-        width: 43px;
-        height: 32px;
-        border-radius: 4px;
-    }
-
-    .caret {
-        width: 12px;
-        height: 12px;
-        margin-inline: 16px 11px;
-    }
-}
-
-.submit {
-    align-self: center;
-    min-width: fl(135, 120);
-    border: 0;
-}
-
-.form-error {
-    @include font(400);
-    font-size: 14px;
-    color: #e74c3c !important;
-    text-align: center;
-}
-
-/*
 * FAQ
 ********/
 .faq {
-    @extend %section-block;
+    @include section-block;
 }
 
 .faq-list {
@@ -1117,50 +455,13 @@ section {
         margin: 0 auto;
     }
 
-    .why-grid {
-        grid-template-columns: 1fr;
-        max-width: 560px;
-    }
-
-    .why-item {
-        min-height: 0;
-
-        &:nth-child(2) {
-            border-inline: 0;
-            border-block: 1px solid rgba(255, 255, 255, .6);
-        }
-    }
-
     .sector-grid {
         grid-template-columns: repeat(2, minmax(0, 300px));
-    }
-
-    .contact-inner {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .contact-form {
-        order: -1;
-        flex-basis: auto;
-    }
-
-    .contact-side {
-        flex-basis: auto;
     }
 }
 
 @media (max-width: $bp-s - 1) {
     .sector-grid {
         grid-template-columns: minmax(0, 300px);
-    }
-
-    .contact-info {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .field-row {
-        grid-template-columns: 1fr;
     }
 }

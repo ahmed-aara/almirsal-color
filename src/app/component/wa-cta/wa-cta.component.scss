@@ -1,0 +1,56 @@
+@use '../../page/landing-page/tokens' as *;
+
+// The link is laid out by the parent (flex rows, centred section CTAs)
+:host {
+    display: contents;
+}
+
+.wa-cta {
+    gap: 10px;
+    height: var(--wa-cta-height, #{fl(56, 46)});
+    min-width: var(--wa-cta-min-width, 0);
+    padding-inline: fl(32, 22);
+    font-size: var(--wa-cta-font-size, #{fs(23, 16)});
+    box-sizing: border-box;
+
+    img {
+        display: block;
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.btn-fill {
+    @include pill-button;
+}
+
+.btn-outline {
+    @include pill-button(transparent);
+    border: 2px solid #fff;
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(255, 255, 255, .12);
+    }
+}
+
+.btn-outline-dark {
+    @include pill-button(transparent, $navy);
+    padding-inline: fl(36, 24);
+    border: 2px solid $navy;
+
+    &:hover,
+    &:focus-visible {
+        background: $navy;
+        color: #fff !important;
+    }
+}
+
+// The icon is dark; make it white on orange, white-outline and hovered dark-outline buttons
+.btn-fill img,
+.btn-outline img,
+.btn-outline-dark:hover img,
+.btn-outline-dark:focus-visible img {
+    filter: brightness(0) invert(1);
+}

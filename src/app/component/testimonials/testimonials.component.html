@@ -1,0 +1,27 @@
+<section class="testimonials" aria-labelledby="testimonials-title">
+    <app-section-heading uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 100" eyebrow="أراء العملاء" title="ماذا يقول عملاؤنا؟"
+        headingId="testimonials-title"></app-section-heading>
+
+    <div class="carousel" uk-scrollspy="cls: uk-animation-slide-bottom-small; delay: 150" (touchstart)="swipe.start($event)" (touchend)="onSwipe($event)">
+        <ul class="carousel-track testimonial-track" [style.--offset]="testimonialOffset">
+            <li *ngFor="let item of testimonialArr" class="testimonial">
+                <div class="stars" role="img" [attr.aria-label]="'التقييم ' + item.rating + ' من 5'">
+                    <img *ngFor="let star of [1,2,3,4,5]" [src]="img + 'icons/star.svg'" alt="">
+                </div>
+                <p>{{item.text}}</p>
+                <h3>{{item.name}}</h3>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dots" role="group" aria-label="التنقل بين آراء العملاء">
+        <button *ngFor="let item of testimonialArr; let i = index" type="button"
+            [class.active]="i === testimonialPos" [attr.aria-current]="i === testimonialPos"
+            [attr.aria-label]="'الشريحة ' + (i + 1)" (click)="testimonialPos = i"></button>
+    </div>
+
+    <div class="section-cta">
+        <app-wa-cta label="شاركنا تجربتك" type="Feedback"
+            message="مرحباً، أريد مشاركة تجربتي مع منتجات المرسال كلر."></app-wa-cta>
+    </div>
+</section>

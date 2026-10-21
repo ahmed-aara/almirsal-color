@@ -1,0 +1,83 @@
+<section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-inner">
+
+        <div class="contact-side" uk-scrollspy="cls: uk-animation-slide-right-small; delay: 100">
+            <iframe class="map" [src]="mapUrl" title="موقع مصنع المرسال كلر على الخريطة" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+
+            <ul class="contact-info" uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > li; delay: 120">
+                <li *ngFor="let item of contactInfoArr">
+                    <img [src]="item.icon" alt="">
+                    <h3>{{item.title}}</h3>
+                    <ng-container *ngIf="item.href; else plainLines">
+                        <a [href]="item.href" dir="ltr">
+                            <span *ngFor="let line of item.lines">{{line}}</span>
+                        </a>
+                    </ng-container>
+                    <ng-template #plainLines>
+                        <p><span *ngFor="let line of item.lines">{{line}}</span></p>
+                    </ng-template>
+                </li>
+            </ul>
+
+            <ul class="social">
+                <ng-container *ngFor="let item of socialArr">
+                    <li *ngIf="item.url">
+                        <a [href]="item.url" target="_blank" rel="noopener" [attr.aria-label]="item.name">
+                            <img [src]="item.icon" alt="">
+                        </a>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+
+        <form class="contact-form" uk-scrollspy="cls: uk-animation-slide-left-small; delay: 200" (ngSubmit)="sendMessage()" novalidate>
+            <div class="form-heading">
+                <h2 id="contact-title">نحن هنا لمساعدتك</h2>
+                <p>جاهزين نساعدك تبدأ الخطوة التالية</p>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label for="contact-last-name">الاسم الأخير <span class="req">*</span></label>
+                    <input id="contact-last-name" name="lastName" type="text" autocomplete="family-name" required
+                        [(ngModel)]="messageData.lastName">
+                </div>
+                <div class="field">
+                    <label for="contact-first-name">الاسم الأول <span class="req">*</span></label>
+                    <input id="contact-first-name" name="firstName" type="text" autocomplete="given-name" required
+                        [(ngModel)]="messageData.firstName">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="contact-phone">رقم الهاتف <span class="req">*</span></label>
+                <div class="phone-input" dir="ltr">
+                    <span class="phone-prefix" aria-hidden="true">
+                        <img class="flag" [src]="img + 'icons/flag-eg.svg'" alt="">
+                        <img class="caret" [src]="img + 'icons/select-arrow.svg'" alt="">
+                        <span>+20</span>
+                    </span>
+                    <input id="contact-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national"
+                        required onkeypress="validate(event)" [(ngModel)]="messageData.phone">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="contact-email">البريد الإلكتروني <span class="req">*</span></label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required dir="ltr"
+                    [(ngModel)]="messageData.email">
+            </div>
+
+            <div class="field">
+                <label for="contact-message">الرسالة <span class="req">*</span></label>
+                <textarea id="contact-message" name="message" rows="5" required
+                    [(ngModel)]="messageData.message"></textarea>
+            </div>
+
+            <button type="submit" class="submit">ارسل</button>
+            <p *ngIf="error_msg" class="form-error" role="alert">*{{error_msg}}*</p>
+        </form>
+
+    </div>
+</section>

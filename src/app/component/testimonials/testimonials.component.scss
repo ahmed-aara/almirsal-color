@@ -1,0 +1,60 @@
+@use '../../page/landing-page/sections' as *;
+
+@include section-host;
+@include section-cta;
+@include carousel;
+
+.testimonials {
+    @include section-block;
+
+    .carousel {
+        margin-top: fl(58, 32);
+    }
+
+    .dots {
+        margin-top: fl(55, 32);
+    }
+}
+
+.testimonial-track {
+    --card: min(#{fl(500, 280)}, calc(100vw - 48px));
+    --gap: #{fl(20, 12)};
+}
+
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: fl(345, 0);
+    padding: fl(42, 28) fl(27, 20);
+    border-radius: 5px;
+    background: #fff;
+    text-align: center;
+
+    p {
+        @include font(400);
+        max-width: 446px;
+        margin-top: fl(28, 20) !important;
+        font-size: fs(22, 15);
+        line-height: 1.36;
+        color: #868686 !important;
+    }
+
+    h3 {
+        @include font(700);
+        margin-top: fl(21, 16) !important;
+        font-size: fs(26, 18);
+        line-height: 1.36;
+        color: $navy-ink !important;
+    }
+}
+
+.stars {
+    display: flex;
+    gap: fl(16, 8);
+
+    img {
+        width: fl(27, 20);
+        height: fl(27, 20);
+    }
+}
