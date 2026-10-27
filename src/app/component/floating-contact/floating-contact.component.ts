@@ -11,8 +11,9 @@ export class FloatingContactComponent {
 
   constructor(private service: ServiceService) { }
 
+  // Plain chat link (international number, digits only); api.whatsapp.com/send rejects an empty text
   get whatsAppLink() {
-    return this.service.whatsAppLink('', 'FloatingButton');
+    return `https://wa.me/2${this.service.phoneNumber}`;
   }
 
   get callLink() {
