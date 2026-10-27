@@ -1,3 +1,11 @@
+// Sticky on the host so the navbar stays at the top of the page while scrolling
+:host {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: block;
+}
+
 .nav_website {
     display: block;
 }

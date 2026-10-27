@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { NavigationStart, Router } from '@angular/router';
 import { ServiceService } from './services/service.service';
 
@@ -27,10 +28,16 @@ export class AppComponent implements OnInit {
   //Variable
   error_msg: string = '';
 
-  constructor(private router: Router, private service: ServiceService) { }
+  constructor(private router: Router, private service: ServiceService, private viewportScroller: ViewportScroller) { }
 
   ngOnInit(): void {
     this.option = false
+
+    // Router fragment scrolling ignores scroll-padding; offset it by the sticky header instead
+    this.viewportScroller.setOffset(() => {
+      const header = document.querySelector('app-home-header, app-nav-bar') as HTMLElement | null;
+      return [0, header?.offsetHeight ?? 0];
+    });
 
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) {
