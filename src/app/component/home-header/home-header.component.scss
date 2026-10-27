@@ -6,9 +6,15 @@
     box-sizing: border-box;
 }
 
+// Sticky on the host so the header stays at the top of the page while scrolling
+:host {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: block;
+}
+
 .home-header {
-    position: relative;
-    z-index: 10;
     background: $navy-dark;
     box-shadow: 0 4px 4px #193761;
 }
@@ -18,7 +24,7 @@
     align-items: center;
     justify-content: space-between;
     max-width: 1920px;
-    height: fl(128, 72);
+    height: $header-height;
     margin: 0 auto;
     padding-inline: $gutter;
 }

@@ -264,7 +264,7 @@
 ********/
 .section-nav {
     position: sticky;
-    top: 0;
+    top: $header-height;
     z-index: 5;
     padding: 12px $gutter;
     border-bottom: 1px solid #ebe6df;

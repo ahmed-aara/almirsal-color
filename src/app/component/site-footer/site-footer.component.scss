@@ -5,6 +5,11 @@
     background: $bg-page;
     text-align: center;
 
+    // Room for the floating contact buttons so they don't cover the copyright line
+    @media (max-width: $bp-m - 1) {
+        padding-bottom: calc(#{fl(52, 28)} + 64px);
+    }
+
     p {
         @include font(400);
         font-size: fs(20, 14);

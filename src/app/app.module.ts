@@ -29,6 +29,7 @@ import { ProjectsCarouselComponent } from './component/projects-carousel/project
 import { TestimonialsComponent } from './component/testimonials/testimonials.component';
 import { PartnersComponent } from './component/partners/partners.component';
 import { ContactSectionComponent } from './component/contact-section/contact-section.component';
+import { FloatingContactComponent } from './component/floating-contact/floating-contact.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ContactSectionComponent } from './component/contact-section/contact-sec
     ProjectsCarouselComponent,
     TestimonialsComponent,
     PartnersComponent,
-    ContactSectionComponent
+    ContactSectionComponent,
+    FloatingContactComponent
   ],
   imports: [
     BrowserModule,

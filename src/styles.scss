@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'app/page/landing-page/tokens' as *;
+
+// Keep in-page jumps (scrollIntoView, #fragment links) clear of the sticky header
+html {
+    scroll-padding-top: $header-height;
+}
+
 @font-face {
     font-family: "Almarai-Light";
     src: url(assets/font/Almarai/Almarai-Light.ttf);

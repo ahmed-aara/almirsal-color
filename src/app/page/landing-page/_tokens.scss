@@ -34,6 +34,9 @@ $font-scale: .8;
 // Side gutter: 119px at 1920px, 16px on phones.
 $gutter: fl(119, 16);
 
+// Height of the sticky site header; sticky bars below it start at this offset.
+$header-height: fl(128, 72);
+
 @mixin font($weight: 400) {
     @if $weight >=800 {
         font-family: "Almarai-ExtraBold", sans-serif;
